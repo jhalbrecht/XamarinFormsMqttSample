@@ -1,6 +1,9 @@
 # Mqtt Sample for Xamarin.forms
 
+## App running
 ![](images/XamFormsMqttUwpDemo.JPG)
+## App settings page for the app running from mosquitto.org
+![](images/XamFormsMqttUwpDemoSettings.JPG)
 
 
 ## Why?
