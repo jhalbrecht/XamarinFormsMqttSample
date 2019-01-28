@@ -9,3 +9,5 @@ Ust this relative link
 And you'll get;
 
 ![](XamFormsMqttUwpDemo.JPG)
+
+![](XamFormsMqttUwpDemoSettings.JPG)
