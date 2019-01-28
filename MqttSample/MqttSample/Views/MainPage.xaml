@@ -4,20 +4,29 @@
              x:Class="MqttSample.Views.MainPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="AntiqueWhite">
 
     <StackLayout HorizontalOptions="CenterAndExpand"
                  VerticalOptions="CenterAndExpand">
 
-        <Image Source="CheeseBurger.jpg" />
+        <Label Text="An app to explore MQTT and learn how to secure with TLS" />
+        <Label Text="This is my hamburger menu. It's a bit cheezie" />
+        <Label Text="" />
 
-        <Label Text="An app to explore MQTT" />
+        <Image Source="CheeseBurger300.jpg" />
 
-        <Button Text="Navigate to Settings page"
-                Command="{Binding SettingsNavigateCommand}" />
+        <Frame BorderColor="Black"
+               Margin="20"
+               Padding="20">
+            <StackLayout>
+                <Button Text="Navigate to Settings page"
+                        Command="{Binding SettingsNavigateCommand}" />
 
-        <Button Text="Navigate to mqtt viewer page"
-                Command="{Binding MqttNavigateCommand}" />
+                <Button Text="Navigate to mqtt viewer page"
+                        Command="{Binding MqttNavigateCommand}" />
+            </StackLayout>
+        </Frame>
     </StackLayout>
 
 </ContentPage>
