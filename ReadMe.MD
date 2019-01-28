@@ -21,7 +21,7 @@ https://github.com/mohaqeq/paho.mqtt.m2mqtt
 #### port 1883
 ``mosquitto_pub -h 192.168.1.222  -t test -m "`date` Howdy It works!"``
 #### port 8883 TLS
-``mosquitto_pub -h redacted.org -t test -m "`date` 0hello again" -p 8883 --capath /etc/ssl/certs/``
+``mosquitto_pub -h redacted.org -t test -m "`date` hello again" -p 8883 --capath /etc/ssl/certs/``
 
 ## Gotchas
 ### Unlikley 
