@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="M2MqttDotnetCore" Version="1.0.8" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Messaging\Messaging.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MqttSample.Views.SettingsView"
+             Title="Mqtt Settings">
+
+    <Grid Padding="200"
+          Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Broker address: "
+               Grid.Row="1"
+               Grid.Column="0" />
+        <Entry Text="{Binding MqttBrokerAddress}"
+               Grid.Row="1"
+               Grid.Column="1" />
+
+        <Label Text="Broker port: "
+               Grid.Row="2"
+               Grid.Column="0" />
+        <Entry Text="{Binding MqttBrokerPort}"
+               Grid.Row="2"
+               Grid.Column="1" />
+
+        <Label Text="Mqtt Broker Tls Port: "
+               Grid.Row="3"
+               Grid.Column="0" />
+        <Entry Text="{Binding MqttBrokerTlsPort}"
+               Grid.Row="3"
+               Grid.Column="1" />
+
+        <Label Text="Mqtt Broker Topic: "
+               Grid.Row="4"
+               Grid.Column="0" />
+        <Entry Text="{Binding MqttBrokerTopic}"
+               Grid.Row="4"
+               Grid.Column="1" />
+
+        <Label Text="Mqtt Broker User Name: "
+               Grid.Row="5"
+               Grid.Column="0" />
+        <Entry Text="{Binding MqttBrokerUserName}"
+               Grid.Row="5"
+               Grid.Column="1" />
+
+        <Label Text="Broker password: "
+               Grid.Row="6"
+               Grid.Column="0" />
+        <Entry Text="{Binding MqttBrokerUserPassword}"
+               Grid.Row="6"
+               Grid.Column="1" />
+
+        <Label Text="Use TLS? "
+               Grid.Row="7"
+               Grid.Column="0" />
+        <Switch IsToggled="{Binding UseTls}"
+                Grid.Row="7"
+                Grid.Column="1" />
+    </Grid>
+</ContentPage>
