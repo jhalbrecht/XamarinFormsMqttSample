@@ -19,9 +19,12 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Topic}" FontAttributes="Italic" />
-                            <Label Grid.Column="1" Text=" - " />
-                            <Label Grid.Column="2" Text="{Binding Message}" />
+                            <Label Text="{Binding Topic}"
+                                   FontAttributes="Italic" />
+                            <Label Grid.Column="1"
+                                   Text=" - " />
+                            <Label Grid.Column="2"
+                                   Text="{Binding Message}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -30,13 +33,43 @@
 
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand">
+
+            <Entry x:Name="PublisEntry"
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Placeholder="Enter mqtt message for publishing here."
+                   Text="{Binding PublishMessage, Mode=TwoWay}" />
             <Button x:Name="MqttPublishButton"
                     Text="Publish"
                     Command="{Binding PublishMessageCommand}" />
-            <Entry x:Name="PublisEntry"
-                   VerticalOptions="FillAndExpand"
-                   Placeholder="Enter mqtt message for publishing here."
-                   Text="{Binding PublishMessage, Mode=TwoWay}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Hot Keys"
+                   VerticalTextAlignment="Center" />
+            
+            <ImageButton 
+                         Source="TwitchFritz6G1fegqX.jpg"
+                         Command="{Binding HotKeyCommandButton}"
+                         CommandParameter="Fritz" />
+
+            <ImageButton Source="JamesM0_c-XWrD_400x400.jpg"
+                         HeightRequest="144"
+                         WidthRequest="144"
+                         Command="{Binding HotKeyCommandButton}"
+                         CommandParameter="James" />
+
+            <ImageButton Source="TimHeuerpNLjrERE_400x400.jpg"
+                         HeightRequest="144"
+                         WidthRequest="144"
+                         Command="{Binding HotKeyCommandButton}"
+                         CommandParameter="TimH" />
+
+            <ImageButton Source="BrianLagunas.jpg"
+                         HeightRequest="144"
+                         WidthRequest="144"
+                         Command="{Binding HotKeyCommandButton}"
+                         CommandParameter="BrianL" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

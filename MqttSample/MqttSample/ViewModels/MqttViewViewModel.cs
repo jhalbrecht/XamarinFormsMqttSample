@@ -3,10 +3,11 @@ using MqttDataService;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MqttSample.ViewModels
 {
@@ -24,6 +25,32 @@ namespace MqttSample.ViewModels
                 await _mqttDataService.Initialize();
             });
             _eventAggregator.GetEvent<MqttMessageTransport>().Subscribe(MqttMessageTransportMessageReceived, ThreadOption.UIThread);
+            HotKeyCommandButton = new Command<string>(DoHotKeyCommandButton);
+        }
+
+        public ICommand HotKeyCommandButton { get; private set; }
+
+        void DoHotKeyCommandButton(string value)
+        {
+            // Debug.WriteLine($"DoPublishFritzMessageCommand parm value: {value}");
+
+            switch (value)
+            {
+                case "Fritz":
+                    _mqttDataService.PublishMqttMessage($"{value} says; \"And then?\"");
+                    break;
+                case "James":
+                    _mqttDataService.PublishMqttMessage($"{value} says; Monkey see, monkey dodo");
+                    break;
+                case "TimH":
+                    _mqttDataService.PublishMqttMessage(
+                        $"{value} says; Bicycle, bicycle, bicycle I want to ride my bicycle, bicycle, bicycle");
+                    break;
+                case "BrianL":
+                    _mqttDataService.PublishMqttMessage(
+                        $"{value} says; Prism Prism Xamarin.Forms Prism all the things!");
+                    break;
+            }
         }
 
         private ObservableCollection<MqttMessageTransport> _mqttMessageTransport = new ObservableCollection<MqttMessageTransport>();
@@ -43,8 +70,20 @@ namespace MqttSample.ViewModels
         {
             _mqttDataService.PublishMqttMessage(PublishMessage);
             PublishMessage = string.Empty; // restore the Entry Placeholder
-            RaisePropertyChanged("PublishMessage"); 
+            RaisePropertyChanged("PublishMessage");
         }
+
+        // TODO: Why would I use either DelegateCommand or ICommand over the other ???
+        //private DelegateCommand _publishFritzMessageCommand;
+        //public DelegateCommand PublishFritzMessageCommand =>
+        //    _publishFritzMessageCommand ?? (_publishFritzMessageCommand = new DelegateCommand(ExecutePublishFritzMessageCommand));
+
+        //private void ExecutePublishFritzMessageCommand()
+        //{
+        //    _mqttDataService.PublishMqttMessage($"\"And then?\"");
+        //    //PublishMessage = string.Empty; // restore the Entry Placeholder
+        //    //RaisePropertyChanged("PublishMessage");
+        //}
 
         private void MqttMessageTransportMessageReceived(MqttMessageTransport obj)
         {

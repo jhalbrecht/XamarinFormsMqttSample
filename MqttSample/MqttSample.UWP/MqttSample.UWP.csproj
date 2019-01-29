@@ -104,8 +104,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BrianLagunas.jpg" />
     <Content Include="CheeseBurger.jpg" />
     <Content Include="CheeseBurger300.jpg" />
+    <Content Include="JamesM0_c-XWrD_400x400.jpg" />
+    <Content Include="TimHeuerpNLjrERE_400x400.jpg" />
+    <Content Include="TwitterFritzPKqHz2BQ_400x400.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -114,6 +118,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="TwitchFritz6G1fegqX.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
