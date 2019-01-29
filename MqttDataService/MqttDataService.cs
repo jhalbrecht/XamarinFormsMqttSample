@@ -49,9 +49,9 @@ namespace MqttDataService
                         GetHostName(_xpdSetting.MqttBrokerAddress),
                         Int32.Parse(_xpdSetting.MqttBrokerTlsPort),
                         _xpdSetting.UseTls,
-                                                //X509Certificate caCert,         // TODO: learn
-                                                //X509Certificate clientCert,     // TODO: learn
-                                                //MqttSslProtocols.TLSv1_2);      // TODO: learn
+                         //X509Certificate caCert,         // TODO: learn
+                         //X509Certificate clientCert,     // TODO: learn
+                         //MqttSslProtocols.TLSv1_2);      // TODO: learn
 
                          dummyX509CertificateA,                //caCert,         // TODO: learn X509Certificate and how to manipulate
                          dummyX509CertificateB,                //clientCert,     // TODO: learn X509Certificate
@@ -92,7 +92,7 @@ namespace MqttDataService
         /// </summary>
         /// <param name="ipAddress"></param>
         /// <returns></returns>
-        
+
         public string GetHostName(string ipAddress)
         {
             try
@@ -108,6 +108,13 @@ namespace MqttDataService
                 return ipAddress;
             }
             return null;
+        }
+
+        public void PublishMqttMessage(string publishmessage)
+        {
+            _client.Publish(
+                _xpdSetting.MqttBrokerTopic,
+                System.Text.Encoding.UTF8.GetBytes(publishmessage));
         }
     }
 }

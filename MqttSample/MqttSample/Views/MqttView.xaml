@@ -27,6 +27,17 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand">
+            <Button x:Name="MqttPublishButton"
+                    Text="Publish"
+                    Command="{Binding PublishMessageCommand}" />
+            <Entry x:Name="PublisEntry"
+                   VerticalOptions="FillAndExpand"
+                   Placeholder="Enter mqtt message for publishing here."
+                   Text="{Binding PublishMessage, Mode=TwoWay}" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>
     

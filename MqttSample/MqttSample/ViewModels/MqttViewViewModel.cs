@@ -1,7 +1,9 @@
 ﻿using Messaging.Models;
 using MqttDataService;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -30,6 +32,20 @@ namespace MqttSample.ViewModels
             get { return _mqttMessageTransport; }
             set { _mqttMessageTransport = value; }
         }
+
+        public string PublishMessage { get; set; }
+
+        private DelegateCommand _publishMessageCommand;
+        public DelegateCommand PublishMessageCommand =>
+            _publishMessageCommand ?? (_publishMessageCommand = new DelegateCommand(ExecutePublishMessageCommand));
+
+        private void ExecutePublishMessageCommand()
+        {
+            _mqttDataService.PublishMqttMessage(PublishMessage);
+            PublishMessage = string.Empty; // restore the Entry Placeholder
+            RaisePropertyChanged("PublishMessage"); 
+        }
+
         private void MqttMessageTransportMessageReceived(MqttMessageTransport obj)
         {
             MqttMessageTransportMessages.Add(obj);

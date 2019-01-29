@@ -21,7 +21,8 @@ namespace MqttSample.ViewModels
 
         private DelegateCommand _settingsNavigateCommand;
         public DelegateCommand SettingsNavigateCommand =>
-            _settingsNavigateCommand ?? (_settingsNavigateCommand = new DelegateCommand(ExecuteSettingsNavigateCommand));
+            _settingsNavigateCommand ?? (_settingsNavigateCommand = 
+            new DelegateCommand(ExecuteSettingsNavigateCommand));
 
         async void ExecuteSettingsNavigateCommand()
         {
