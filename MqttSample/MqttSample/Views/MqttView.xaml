@@ -5,19 +5,23 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MqttSample.Views.MqttView">
 
-    <StackLayout>
-        <Label Text="mqtt messages received below" />
-        <ListView x:Name="MqttSwitches"
-                  ItemsSource="{Binding MqttMessages}">
+    <StackLayout  Margin="3"
+                  Padding="2">
+        <Label Text="Mqtt messages received"
+               FontSize="Medium" />
+
+        <ListView x:Name="MqttMessageTransportMessages"
+                  Margin="2"
+                  Header="Topic - Message"
+                  ItemsSource="{Binding MqttMessageTransportMessages}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
-                        <StackLayout Padding="10"
-                                     Orientation="Horizontal">
-                            <Label Text="{Binding .}" />
-
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Topic}" FontAttributes="Italic" />
+                            <Label Grid.Column="1" Text=" - " />
+                            <Label Grid.Column="2" Text="{Binding Message}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

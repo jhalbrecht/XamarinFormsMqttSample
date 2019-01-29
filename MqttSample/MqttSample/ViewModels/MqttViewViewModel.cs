@@ -1,13 +1,9 @@
-﻿using Prism.Commands;
+﻿using Messaging.Models;
+using MqttDataService;
 using Prism.Events;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using Messaging.Models;
 using System.Diagnostics;
-using MqttDataService;
 using System.Threading.Tasks;
 
 namespace MqttSample.ViewModels
@@ -25,25 +21,19 @@ namespace MqttSample.ViewModels
             {
                 await _mqttDataService.Initialize();
             });
-
-            _eventAggregator.GetEvent<MessageSentEvent>().Subscribe(TestMessageReceived, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<MqttMessageTransport>().Subscribe(MqttMessageTransportMessageReceived, ThreadOption.UIThread);
         }
 
-        private ObservableCollection<string> _mqttMessages = new ObservableCollection<string>();
-        public ObservableCollection<string> MqttMessages
+        private ObservableCollection<MqttMessageTransport> _mqttMessageTransport = new ObservableCollection<MqttMessageTransport>();
+        public ObservableCollection<MqttMessageTransport> MqttMessageTransportMessages
         {
-            get { return _mqttMessages; }
-            set
-            {
-                _mqttMessages = value;
-                OnPropertyChanged(nameof(MqttMessages));
-            }
+            get { return _mqttMessageTransport; }
+            set { _mqttMessageTransport = value; }
         }
-
-        private void TestMessageReceived(string obj)
+        private void MqttMessageTransportMessageReceived(MqttMessageTransport obj)
         {
-            MqttMessages.Add(obj);
-            Debug.WriteLine($"A IEventAggregator message was received in MqttViewViewModel: {obj}");
+            MqttMessageTransportMessages.Add(obj);
+            Debug.WriteLine($"MqttMessageTransport message received in MqttViewViewModel: Topic: '{obj.Topic}' Message: '{obj.Message}");
         }
     }
 }

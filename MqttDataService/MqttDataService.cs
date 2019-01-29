@@ -1,15 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
-using Xamarin.Essentials;
+﻿using Messaging.Models;
 using MqttDataService.Models;
 using Prism.Events;
-using Messaging.Models;
-using System.Threading.Tasks;
-using System.Security.Cryptography.X509Certificates;
+using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace MqttDataService
 {
@@ -23,6 +22,8 @@ namespace MqttDataService
 
         public MqttDataService(IXpdSettings xpdSetting, IEventAggregator eventAggregator)
         {
+            // TODO saw it on so ... var mqttClient = new MqttFactory().CreateMqttClient();
+
             _xpdSetting = xpdSetting;
             _eventAggregator = eventAggregator;
         }
@@ -78,11 +79,20 @@ namespace MqttDataService
         private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             var message = System.Text.Encoding.Default.GetString(e.Message);
+            MqttMessageTransport mmt = new MqttMessageTransport();
+            mmt.Topic = e.Topic;
+            mmt.Message = message;
             Debug.WriteLine($"Message received in MqttDataService _client_MqttMsgPublishReceived {message}");
-            _eventAggregator.GetEvent<MessageSentEvent>().Publish(message);
+            _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);
         }
 
-        // https://stackoverflow.com/questions/11123639/how-to-resolve-hostname-from-local-ip-in-c-net
+        /// <summary>
+        /// based on
+        ///  https://stackoverflow.com/questions/11123639/how-to-resolve-hostname-from-local-ip-in-c-net
+        /// </summary>
+        /// <param name="ipAddress"></param>
+        /// <returns></returns>
+        
         public string GetHostName(string ipAddress)
         {
             try
@@ -95,10 +105,6 @@ namespace MqttDataService
             }
             catch (SocketException ex)
             {
-                //unknown host or
-                //not every IP has a name
-                //log exception (manage it)
-
                 return ipAddress;
             }
             return null;

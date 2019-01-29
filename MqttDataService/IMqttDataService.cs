@@ -1,6 +1,4 @@
-﻿//using BlankAppPrisimEventAggregator.Models;
-//BlankApp1XamarinPrisimDeleteMe.ViewModels
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 namespace MqttDataService
 {
     public interface IMqttDataService
