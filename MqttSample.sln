@@ -17,6 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messaging", "Messaging\Mess
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{111F1675-BAF3-4C27-8F62-E6DC2397263C}"
 	ProjectSection(SolutionItems) = preProject
+		images\MainPage.JPG = images\MainPage.JPG
 		ReadMe.MD = ReadMe.MD
 	EndProjectSection
 EndProject
