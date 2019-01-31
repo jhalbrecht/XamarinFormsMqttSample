@@ -1,7 +1,8 @@
 # Mqtt Sample for Xamarin.forms
 
-## App running
+## Mqtt Sammple running
 ![](images/XamFormsMqttUwpDemo.JPG)
+See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional images
 
 
 ## Why?
