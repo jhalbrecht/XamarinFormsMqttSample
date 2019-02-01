@@ -104,6 +104,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="blowdartqo-39vSi_400x400.jpg" />
     <Content Include="BrianLagunas.jpg" />
     <Content Include="CheeseBurger.jpg" />
     <Content Include="CheeseBurger300.jpg" />

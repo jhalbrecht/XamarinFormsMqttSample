@@ -7,8 +7,9 @@
 
     <StackLayout  Margin="3"
                   Padding="2">
+        <Label Text="{Binding MosquittoPubSub}" TextColor="Brown" FontSize="Medium"/>
         <Label Text="Mqtt messages received"
-               FontSize="Medium" />
+               FontSize="Large" />
 
         <ListView x:Name="MqttMessageTransportMessages"
                   Margin="2"
@@ -41,6 +42,7 @@
                    Text="{Binding PublishMessage, Mode=TwoWay}" />
             <Button x:Name="MqttPublishButton"
                     Text="Publish"
+                    IsEnabled="False"
                     Command="{Binding PublishMessageCommand}" />
         </StackLayout>
 
@@ -70,6 +72,12 @@
                          WidthRequest="144"
                          Command="{Binding HotKeyCommandButton}"
                          CommandParameter="BrianL" />
+
+            <ImageButton Source="blowdartqo-39vSi_400x400.jpg"
+                         HeightRequest="144"
+                         WidthRequest="144"
+                         Command="{Binding HotKeyCommandButton}"
+                         CommandParameter="blowdart" />
         </StackLayout>
     </StackLayout>
 </ContentPage>
