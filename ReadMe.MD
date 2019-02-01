@@ -1,9 +1,8 @@
 # Mqtt Sample for Xamarin.forms
 
-## App running
+## Mqtt Sammple running
 ![](images/XamFormsMqttUwpDemo.JPG)
-## App settings page for the app running from mosquitto.org
-![](images/XamFormsMqttUwpDemoSettings.JPG)
+See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional images
 
 
 ## Why?
@@ -22,15 +21,6 @@ The Mqtt client. Thanks Mohaqeq!
 The Eclipse.org paho M2Mqtt hasn't been worked on in a while..
 From mohaqeq on GitHub and converted to .NET Standard 2.0 library
 https://github.com/mohaqeq/paho.mqtt.m2mqtt
-
-## Testing
-
-### Mosquitto_[pub|sub]
-
-#### port 1883
-``mosquitto_pub -h 192.168.1.222  -t test -m "`date` Howdy It works!"``
-#### port 8883 TLS
-``mosquitto_pub -h redacted.org -t test -m "`date` hello again" -p 8883 --capath /etc/ssl/certs/``
 
 #### Public mqtt broker
 ##### test.mosquitto.org at [mosquitto.org](https://mosquitto.org/)
