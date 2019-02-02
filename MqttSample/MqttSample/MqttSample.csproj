@@ -1,10 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+  <DebugType>full</DebugType>
+  <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.94569-pre3" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.708-pre" />
   </ItemGroup>
@@ -22,5 +25,13 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <!--
+  jha 2/2/2019 Exception of type 'Pdb2Mdb.PortablePdbNotSupportedException' was thrown.
+   at Pdb2Mdb.Converter.Convert(String filename) 
+   https://forums.xamarin.com/discussion/91001/vs-2017-error-convertpdbtomdb-task-failed-unexpectedly-portablepdbnotsupportedexception
+  --> 
+<!--<PropertyGroup>
+    <DebugType>full</DebugType>
+  </PropertyGroup>-->
 
 </Project>

@@ -104,11 +104,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="blowdartqo-39vSi_400x400.jpg" />
+    <Content Include="blowdart400x400.jpg" />
     <Content Include="BrianLagunas.jpg" />
     <Content Include="CheeseBurger.jpg" />
     <Content Include="CheeseBurger300.jpg" />
-    <Content Include="JamesM0_c-XWrD_400x400.jpg" />
+    <Content Include="James400x400.jpg" />
     <Content Include="TimHeuerpNLjrERE_400x400.jpg" />
     <Content Include="TwitterFritzPKqHz2BQ_400x400.jpg" />
     <Content Include="Properties\Default.rd.xml" />
@@ -133,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.0-preview1-26926-04" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.94569-pre3" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.708-pre" />
   </ItemGroup>

@@ -55,7 +55,7 @@
                          Command="{Binding HotKeyCommandButton}"
                          CommandParameter="Fritz" />
 
-            <ImageButton Source="JamesM0_c-XWrD_400x400.jpg"
+            <ImageButton Source="James400x400.jpg"
                          HeightRequest="144"
                          WidthRequest="144"
                          Command="{Binding HotKeyCommandButton}"
@@ -73,7 +73,7 @@
                          Command="{Binding HotKeyCommandButton}"
                          CommandParameter="BrianL" />
 
-            <ImageButton Source="blowdartqo-39vSi_400x400.jpg"
+            <ImageButton Source="blowdart400x400.jpg"
                          HeightRequest="144"
                          WidthRequest="144"
                          Command="{Binding HotKeyCommandButton}"
