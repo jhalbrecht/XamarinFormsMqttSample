@@ -4,9 +4,8 @@ using MqttSample.ViewModels;
 using MqttSample.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MqttDataService.Models;
-//using MqttDataService.Models;
 using MqttDataService;
+using MqttSample.Utility.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MqttSample
@@ -28,13 +27,13 @@ namespace MqttSample
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
-
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewViewModel>();
             containerRegistry.RegisterForNavigation<MqttView, MqttViewViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
 
             containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
             containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService.MqttDataService>();

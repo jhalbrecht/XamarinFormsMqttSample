@@ -1,5 +1,6 @@
 ﻿using Messaging.Models;
-using MqttDataService.Models;
+//using MqttDataService.Models;
+using MqttSample.Utility.Services;
 using Prism.Events;
 using System;
 using System.Diagnostics;

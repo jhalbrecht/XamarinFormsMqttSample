@@ -14,7 +14,7 @@
         <Label Text="This is my hamburger menu. It's a bit cheezie" />
         <Label Text="" />
 
-        <Image Source="CheeseBurger300.jpg" />
+        <Image Source="CheeseBurger150.jpg" />
 
         <Frame BorderColor="Black"
                Margin="20"
@@ -25,6 +25,9 @@
 
                 <Button Text="Navigate to mqtt viewer page"
                         Command="{Binding MqttNavigateCommand}" />
+
+                <Button Text="Another settings page"
+                        Command="{Binding SettingsPage}" />
             </StackLayout>
         </Frame>
     </StackLayout>

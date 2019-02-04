@@ -1,10 +1,6 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Windows.Input;
 
 namespace MqttSample.ViewModels
 {
@@ -16,7 +12,8 @@ namespace MqttSample.ViewModels
             : base(navigationService)
         {
             _navigationService = navigationService;
-            Title = "Mqtt demo app";
+            Title = "Mqtt Sample";
+            SettingsPage = new DelegateCommand(DoSettingsPage);
         }
 
         private DelegateCommand _settingsNavigateCommand;
@@ -48,5 +45,13 @@ namespace MqttSample.ViewModels
         //    Debug.WriteLine(message);
         //    //_eventAggregator.GetEvent<MessageSentEvent>().Publish(TheTestMessage);
         //}
+
+        // SettingsPage
+        public ICommand SettingsPage { get; set; }
+
+        private async void DoSettingsPage()
+        {
+            await _navigationService.NavigateAsync("SettingsPage");
+        }
     }
 }

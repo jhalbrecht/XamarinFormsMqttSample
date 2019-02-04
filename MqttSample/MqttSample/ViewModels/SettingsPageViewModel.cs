@@ -1,5 +1,4 @@
-﻿//using MqttDataService.Models;
-using MqttSample.Utility.Services;
+﻿using MqttSample.Utility.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -8,16 +7,15 @@ using System.Linq;
 
 namespace MqttSample.ViewModels
 {
-
-    public class SettingsViewViewModel : BindableBase
+	public class SettingsPageViewModel : BindableBase // TODO I want to use ViewModelBase
     {
         public IXpdSettings _xPdSetting;
-        public SettingsViewViewModel(IXpdSettings xpdSettings)
+        public SettingsPageViewModel(IXpdSettings xpdSettings)
         {
+            Title = "new settings page";
             _xPdSetting = xpdSettings;
-            // Title = "Mqtt Settings";
         }
-
+        public string Title { get; set; }
         /// <summary>
         /// Mqtt Brokder FQDN or ip address
         /// </summary>
@@ -99,6 +97,5 @@ namespace MqttSample.ViewModels
                 _xPdSetting.MqttBrokerTopic = value;
             }
         }
-
     }
 }
