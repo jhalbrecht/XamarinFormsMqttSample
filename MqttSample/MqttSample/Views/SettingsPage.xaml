@@ -6,6 +6,27 @@
              x:Class="MqttSample.Views.SettingsPage"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+         
+                <Setter Property="TextColor" Value="Blue" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Micro"/>
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="BackgroundColor" Value="AliceBlue" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="TextColor" Value="Brown" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid Padding="20"
           Margin="10">
         <Grid.RowDefinitions>

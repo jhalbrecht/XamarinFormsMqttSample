@@ -34,17 +34,17 @@ namespace MqttSample.Utility.Services
         }
         public string MqttBrokerTopic
         {
-            get => Preferences.Get(nameof(MqttBrokerTopic), "test");
+            get => Preferences.Get(nameof(MqttBrokerTopic), "xamtest");
             set => Preferences.Set(nameof(XpdSettings.MqttBrokerTopic), value);
         }
         public string MqttBrokerUserName
         {
-            get => Preferences.Get(nameof(MqttBrokerUserName), "jeffa");
+            get => Preferences.Get(nameof(MqttBrokerUserName), "johndoe");
             set => Preferences.Set(nameof(XpdSettings.MqttBrokerUserName), value);
         }
         public string MqttBrokerUserPassword
         {
-            get => Preferences.Get(nameof(MqttBrokerUserPassword), "burlfloor4");
+            get => Preferences.Get(nameof(MqttBrokerUserPassword), "rip");
             set => Preferences.Set(nameof(XpdSettings.MqttBrokerUserPassword), value);
         }
     }
