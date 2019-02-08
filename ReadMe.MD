@@ -26,10 +26,11 @@ Learn best practices / real world way(s) to install and use certificates in mobi
 ## Resources
 ### clients
 ### Mohaqeq M2Mqtt Fork
-This is the client I've used in the past. This fork is a drop in my services lib. Thanks Mohaqeq!
+This is the client I've used in the past. This fork is a drop in my services lib. Thanks Hamidreza Mohaqeq!
 The Eclipse.org paho M2Mqtt hasn't been worked on in a while..
 From mohaqeq on GitHub and converted to .NET Standard 2.0 library
-https://github.com/mohaqeq/paho.mqtt.m2mqtt
+* [M2MqttDotnetCore ](https://www.nuget.org/packages/M2MqttDotnetCore/) NuGet
+* https://github.com/mohaqeq/paho.mqtt.m2mqtt
 
 ### Reading
 Help me find some great and current reading material. Maybe some videos? Again; **Looking for real world examples** of how to handle installing certificartes in 
