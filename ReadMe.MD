@@ -6,7 +6,10 @@ Goal of the project is to secure with TLS. This just a fun little pub/sub chat a
 In the screenshot you'll see the syntax for mosquitto_pub from the command line configured with the Mqtt Sample app settings._
 
 ![](images/XamFormsMqttUwpDemo.JPG)
-See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional images
+
+Using the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
+
+See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional page images
 
 
 ## Why?
@@ -31,10 +34,6 @@ https://github.com/mohaqeq/paho.mqtt.m2mqtt
 ### Reading
 Help me find some great and current reading material. Maybe some videos? Again; **Looking for real world examples** of how to handle installing certificartes in 
 the mobile apps UWP, Android and IOS. And then how to access them. **_Properly._**
-
-
-#### Public mqtt broker
-##### test.mosquitto.org at [mosquitto.org](https://mosquitto.org/)
 
 ## Gotchas
 ### Unlikley 
