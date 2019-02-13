@@ -14,7 +14,8 @@
 `mosquitto_pub -h redacted.org --cafile ./ca.crt   -t "xamtest" -m "A message sent on port 8883" -p 8883 -d  --cert ./consoleclient.crt --key ./consoleclient.key -d --insecure`
 ## python
 
-Samples/PahoMqttSelfSigned.pys
+[PahoMqttSelfSigned.py](https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/PahoMqttSelfSigned.py)
+
 
 
 ## .net core

@@ -13,11 +13,12 @@ namespace MqttSample.Console
             try
             {
                 X509Certificate clientCert =
-                    new X509Certificate2($"c:/jstuff/tls/debbie/selfsigned/consoleclient.pfx", "xamarin");
+                    new X509Certificate2($"c:/jstuff/tls/karla/selfsigned/consoleclient.pfx", "xamarin");
 
                 X509Certificate caCert =
-                    //X509Certificate.CreateFromCertFile("c:/jstuff/tls/debbie/selfsigned/debbie.redacted.org.crt");
-                    X509Certificate.CreateFromCertFile($"c:/jstuff/tls/debbie/selfsigned/debbie.redacted.org.crt");
+                    //X509Certificate.CreateFromCertFile("c:/jstuff/tls/karla/selfsigned/karla.redacted.org.crt");
+                    X509Certificate.CreateFromCertFile($"c:/jstuff/tls/karla/selfsigned/karla.redacted.org.crt");
+
 
                 var _client = new MqttClient("redacted.org", 8883, true, caCert, clientCert, MqttSslProtocols.TLSv1_2);
 

@@ -3,7 +3,7 @@
 Revisions February 12, 2019
 Created on Dec 3, 2015
 
-@author: jeffa
+@author: redacted
 
 Python 2.7.13 (default, Sep 26 2018, 18:42:22)
 
