@@ -1,5 +1,7 @@
 # That's crazy! Samples in a Sample
 
+![](images/SmallMoves.png)
+
 ## Resources
 
 ### Self Signed certificates
