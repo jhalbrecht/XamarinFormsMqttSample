@@ -2,7 +2,7 @@
 
 ![](/images/SmallMoves.png)
 
-I got the self signed certificates to work on mosquitto sub/put and a python example. .net you're next.
+I got the self signed certificates to work on mosquitto sub/pub and a python example. .net you're next.
 
 ## Resources
 
