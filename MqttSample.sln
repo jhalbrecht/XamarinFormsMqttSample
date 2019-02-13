@@ -28,10 +28,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqttSample.Console", "MqttSample.Console\MqttSample.Console.csproj", "{E59BA97F-D8D2-4153-BA26-0AD39634D190}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{B9208B37-77BF-43AF-8AC2-DBC381D61F41}"
-	ProjectSection(SolutionItems) = preProject
-		PahoMqttSelfSigned.py = PahoMqttSelfSigned.py
-		Samples.md = Samples.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
