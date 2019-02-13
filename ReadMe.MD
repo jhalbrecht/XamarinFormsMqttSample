@@ -44,5 +44,40 @@ the mobile apps UWP, Android and IOS. And then how to access them. **_Properly._
 
 https://code.msdn.microsoft.com/windowsapps/M2Mqtt-MQTT-client-library-ac6d3858/view/Discussions
 
-
 https://stackoverflow.com/questions/18462064/associate-a-private-key-with-the-x509certificate2-class-in-net
+
+How to create a certificate request with CertEnroll and .NET (C#)
+https://blogs.msdn.microsoft.com/alejacma/2008/09/05/how-to-create-a-certificate-request-with-certenroll-and-net-c/
+
+SSL Certificate Formats
+https://www.tutorialsteacher.com/https/ssl-certificate-format
+
+Survival guides - TLS/SSL and SSL (X.509) Certificates
+http://www.zytrax.com/tech/survival/ssl.html
+
+
+adrenalinehit/mqtt-subscriber.cs
+https://gist.github.com/adrenalinehit/ccfeba90264a02fb629f
+
+Sign server and client certificates
+
+https://jamielinux.com/docs/openssl-certificate-authority/sign-server-and-client-certificates.html
+
+OpenSSL Certificate Authority
+https://jamielinux.com/docs/openssl-certificate-authority/
+
+Associate a private key with the X509Certificate2 class in .net
+https://stackoverflow.com/questions/18462064/associate-a-private-key-with-the-x509certificate2-class-in-net
+
+Important warnings about selfsigning
+https://mosquitto.org/man/mosquitto-tls-7.html
+
+Possible useful sample
+
+// https://gist.github.com/adrenalinehit/a4e2684a0b3b0a49b48e
+
+
+
+##### This has some clues
+
+https://github.com/eclipse/paho.mqtt.m2mqtt/issues/67

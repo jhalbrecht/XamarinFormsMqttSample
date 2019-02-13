@@ -35,36 +35,44 @@ namespace MqttDataService
             {
                 if (_xpdSetting.UseTls)
                 {
-                    //MqttClient client = new MqttClient("ppatierno-PC",
-                    //    MqttClient.MQTT_BROKER_DEFAULT_SSL_PORT,
-                    //    true,
-                    //    new X509Certificate(Resources.m2mqtt_ca));
+                    //X509Certificate caCert = X509Certificate.CreateFromCertFile("mosquitto.org.cer");
+                    //X509Certificate foocaCert = X509Certificate.CreateFromCertFile("mosquitto.org.cer");
+                    // MqttClient(string brokerHostName, int brokerPort, bool secure, X509Certificate caCert)
 
-                    // line 310 MqttClient.cs
-                    //public MqttClient(string brokerHostName, int brokerPort, bool secure, X509Certificate caCert, X509Certificate clientCert, MqttSslProtocols sslProtocol)
+                    // TODO: I'd like to duplicate this; "mosquitto_pub -h redacted.org -t test -m "`date` hello again" -p 8883 --capath /etc/ssl/certs/"
+                    // var fooclient = new MqttClient(_xpdSetting.MqttBrokerAddress, Int32.Parse(_xpdSetting.MqttBrokerTlsPort), true, foocaCert); // bummer no constructor like this.
 
-                    //var foo = System.Net.Dns.GetHostAddresses(_xpdSetting.MqttBrokerAddress).ToString();
+                    // https://github.com/eclipse/paho.mqtt.m2mqtt/issues/67#issuecomment-361821305
 
-                    _client = new MqttClient(
-                        // Dns.GetHostAddresses(_xpdSetting.MqttBrokerAddress).ToString(),
-                        GetHostName(_xpdSetting.MqttBrokerAddress),
-                        Int32.Parse(_xpdSetting.MqttBrokerTlsPort),
-                        _xpdSetting.UseTls,
-                         //X509Certificate caCert,         // TODO: learn
-                         //X509Certificate clientCert,     // TODO: learn
-                         //MqttSslProtocols.TLSv1_2);      // TODO: learn
+                    try
+                    {
+                        // public MqttClient(string brokerHostName, int brokerPort, bool secure, X509Certificate caCert, X509Certificate clientCert, MqttSslProtocols sslProtocol)
 
-                         dummyX509CertificateA,                //caCert,         // TODO: learn X509Certificate and how to manipulate
-                         dummyX509CertificateB,                //clientCert,     // TODO: learn X509Certificate
-                        MqttSslProtocols.TLSv1_2);      // TODO: learn
+                        // check this out sometime https://gist.github.com/adrenalinehit/ccfeba90264a02fb629f
 
-                    //_client = new MqttClient(_xpdSetting.MqttBrokerAddress);
+                        //X509Certificate2 clientCert = new X509Certificate2("poit", "splat");
+                        //X509Certificate caCert = X509Certificate.CreateFromCertFile("mosquitto.org.cer");
+
+                        X509Certificate clientCert = new X509Certificate2("ca.crt");
+                        X509Certificate caCert = X509Certificate.CreateFromCertFile("dalia.redacted.org.crt");
+
+                        _client = new MqttClient(
+                            GetHostName(_xpdSetting.MqttBrokerAddress),
+                            Int32.Parse(_xpdSetting.MqttBrokerTlsPort),
+                            _xpdSetting.UseTls,
+                            caCert,                //caCert,         // TODO: learn X509Certificate and how to manipulate
+                            clientCert,                //clientCert,     // TODO: learn X509Certificate
+                            MqttSslProtocols.TLSv1_2);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message) ;
+                    }
                 }
                 else
                 {
                     _client = new MqttClient(_xpdSetting.MqttBrokerAddress);
                 }
-
 
                 _client.MqttMsgPublishReceived += _client_MqttMsgPublishReceived;
                 string clientId = Guid.NewGuid().ToString();
