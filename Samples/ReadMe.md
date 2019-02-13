@@ -1,6 +1,8 @@
 # That's crazy! Samples in a Sample
 
-![](images/SmallMoves.png)
+![](/images/SmallMoves.png)
+
+I got the self signed certificates to work on mosquitto sub/put and a python example. .net you're next.
 
 ## Resources
 
