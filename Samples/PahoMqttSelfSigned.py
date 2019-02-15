@@ -63,7 +63,7 @@ client = mqtt.Client(
     client_id="mywikitest",
     protocol=mqtt.MQTTv311)
 
-client.tls_set(caCrt,
+client.tls_set(ca_certs=caCrt,
                certfile=clientCrt,
                keyfile=clientKey,
                tls_version=ssl.PROTOCOL_TLSv1_2)

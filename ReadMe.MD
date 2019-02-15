@@ -77,6 +77,8 @@ Possible useful sample
 // https://gist.github.com/adrenalinehit/a4e2684a0b3b0a49b48e
 
 
+https://docs.microsoft.com/en-us/dotnet/api/system.net.security.remotecertificatevalidationcallback?redirectedfrom=MSDN&view=netframework-4.7.2
+     
 
 ##### This has some clues
 

@@ -54,7 +54,7 @@ namespace MqttDataService
                         //X509Certificate caCert = X509Certificate.CreateFromCertFile("mosquitto.org.cer");
 
                         X509Certificate clientCert = new X509Certificate2("ca.crt");
-                        X509Certificate caCert = X509Certificate.CreateFromCertFile("dalia.redacted.org.crt");
+                        X509Certificate caCert = X509Certificate.CreateFromCertFile("debbie.redacted.org.crt");
 
                         _client = new MqttClient(
                             GetHostName(_xpdSetting.MqttBrokerAddress),
