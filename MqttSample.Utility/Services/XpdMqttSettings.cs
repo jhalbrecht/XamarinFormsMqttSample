@@ -80,19 +80,17 @@ namespace MqttSample.Utility.Services
         {
             try
             {
-FileData fileData = await Plugin.FilePicker.CrossFilePicker.Current.PickFile();
-if (fileData == null)
-    return; // user canceled file picking
+                FileData fileData = await Plugin.FilePicker.CrossFilePicker.Current.PickFile();
+                if (fileData == null)
+                    return; // user canceled file picking
 
-string fileName = fileData.FileName;
+                string fileName = fileData.FileName;
+                // string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
+                string content = Convert.ToBase64String(fileData.DataArray, 0, fileData.DataArray.Length,
+                                Base64FormattingOptions.None);
 
-string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
-
-string content = Convert.ToBase64String(fileData.DataArray, 0, fileData.DataArray.Length,
-                Base64FormattingOptions.None);
-
-string deviceFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
-File.WriteAllText(deviceFileName, content);
+                string deviceFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
+                File.WriteAllText(deviceFileName, content);
 
                 Debug.WriteLine("File name chosen: " + fileName);
                 Debug.WriteLine("File data: " + content);
