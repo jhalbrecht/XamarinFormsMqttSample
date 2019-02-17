@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System.Windows.Input;
 
+
 namespace MqttSample.ViewModels
 {
     public class SettingsPageViewModel : BindableBase // TODO I want to use ViewModelBase Brian @brianlagunas di problems...
