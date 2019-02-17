@@ -79,6 +79,7 @@ Possible useful sample
 
 https://docs.microsoft.com/en-us/dotnet/api/system.net.security.remotecertificatevalidationcallback?redirectedfrom=MSDN&view=netframework-4.7.2
      
+https://www.bevywise.com/blog/creating-ssl-certificate-secure-mqtt-communication/
 
 ##### This has some clues
 

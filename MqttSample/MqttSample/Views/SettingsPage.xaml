@@ -38,6 +38,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -92,6 +94,20 @@
                Grid.Column="0" />
         <Switch IsToggled="{Binding UseTls}"
                 Grid.Row="7"
+                Grid.Column="1" />
+
+        <Label Text="Load .ca "
+               Grid.Row="8"
+               Grid.Column="0" />
+        <Button Text="Load .ca?" Command="{Binding LoadCa}"
+                Grid.Row="8"
+                Grid.Column="1" />
+
+        <Label Text="Load .pfx "
+               Grid.Row="9"
+               Grid.Column="0" />
+        <Button Text="Load .pfx?" Command="{Binding LoadPfx}"
+                Grid.Row="9"
                 Grid.Column="1" />
     </Grid>
 

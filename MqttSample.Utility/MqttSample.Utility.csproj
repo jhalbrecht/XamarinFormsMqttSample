@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.14-beta" />
   </ItemGroup>
 
 </Project>

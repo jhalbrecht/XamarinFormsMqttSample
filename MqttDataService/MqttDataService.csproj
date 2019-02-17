@@ -11,7 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="M2MqttDotnetCore" Version="1.0.8" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.708-pre" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.94569-pre3" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.14-beta" />
   </ItemGroup>
 
   <ItemGroup>

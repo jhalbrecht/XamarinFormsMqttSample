@@ -1,20 +1,29 @@
-﻿using MqttSample.Utility.Services;
+﻿using MqttDataService;
+using MqttSample.Utility.Services;
 using Prism.Commands;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Windows.Input;
 
 namespace MqttSample.ViewModels
 {
-	public class SettingsPageViewModel : BindableBase // TODO I want to use ViewModelBase
+    public class SettingsPageViewModel : BindableBase // TODO I want to use ViewModelBase Brian @brianlagunas di problems...
     {
-        public IXpdSettings _xPdSetting;
-        public SettingsPageViewModel(IXpdSettings xpdSettings)
+        private IXpdSettings _xPdSetting;
+        private IMqttDataService _mqttDataService;
+
+        public SettingsPageViewModel(IXpdSettings xpdSettings, IMqttDataService mqttDataService)
         {
             Title = "new settings page";
             _xPdSetting = xpdSettings;
+            _mqttDataService = mqttDataService;
+
+            LoadCa = new DelegateCommand(() => _xPdSetting.LoadCa());
+            LoadPfx = new DelegateCommand(() => _xPdSetting.LoadPfx());
         }
+
+        public ICommand LoadCa { get; set; }
+        public ICommand LoadPfx { get; set; }
+
         public string Title { get; set; }
         /// <summary>
         /// Mqtt Brokder FQDN or ip address

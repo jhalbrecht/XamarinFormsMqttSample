@@ -1,4 +1,6 @@
-﻿namespace MqttSample.Utility.Services
+﻿using System.Threading.Tasks;
+
+namespace MqttSample.Utility.Services
 {
     public interface IXpdSettings
     {
@@ -9,6 +11,8 @@
         string MqttBrokerUserPassword { get; set; }
         string MqttBrokerTopic { get; set; }
         bool UseTls { get; set; }
+        Task LoadCa();
+        Task LoadPfx();
     }
 }
 
