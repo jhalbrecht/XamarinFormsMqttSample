@@ -85,15 +85,13 @@ namespace MqttDataService
                     */
 
                     byte[] certificate = Convert.FromBase64String(theBase64EncodedPfx);
-                    //X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin");
+                    X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin");
 
-                    X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin", X509KeyStorageFlags.DefaultKeySet);
+                    //X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin", X509KeyStorageFlags.DefaultKeySet);
 
                     //
                     // We have the certificates, connect to the broker
                     //
-
-                    // https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509certificate2.import?view=netframework-4.7.2#System_Security_Cryptography_X509Certificates_X509Certificate2_Import_System_Byte___System_Security_SecureString_System_Security_Cryptography_X509Certificates_X509KeyStorageFlags_
 
                     LogCertificatInformation(clientCert);
 
@@ -110,6 +108,11 @@ namespace MqttDataService
                 {
                     _client = new MqttClient(_xpdSetting.MqttBrokerAddress);
                 }
+
+                // Android permissions?
+                // https://github.com/eclipse/paho.mqtt.android/issues/98
+
+                // .pfx on phone bac7d4ea62c691f452ba9535bf786e11ddfb6824
 
                 _client.MqttMsgPublishReceived += _client_MqttMsgPublishReceived;
                 //string clientId = Guid.NewGuid().ToString();
@@ -190,7 +193,7 @@ namespace MqttDataService
                 Debug.WriteLine($"\nX509ChainStatus item: {item.StatusInformation}\n");
             }
 
-            return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
+            //return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
 
 
             if (sslPolicyErrors == SslPolicyErrors.None)

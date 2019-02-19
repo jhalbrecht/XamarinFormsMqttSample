@@ -142,7 +142,7 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.94569-pre3" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.135214-pre4" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.708-pre" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +152,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ca.crt" />
     <None Include="MqttSample.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

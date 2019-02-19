@@ -30,6 +30,7 @@
   <Extensions>
     <Extension Category="windows.certificates">
       <Certificates>
+        <Certificate StoreName="self signed root ca" Content="ca.crt" />
         <TrustFlags ExclusiveTrust="true" />
         <SelectionCriteria AutoSelect="true" />
       </Certificates>

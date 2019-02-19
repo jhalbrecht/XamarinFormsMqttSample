@@ -81,6 +81,8 @@ https://docs.microsoft.com/en-us/dotnet/api/system.net.security.remotecertificat
      
 https://www.bevywise.com/blog/creating-ssl-certificate-secure-mqtt-communication/
 
+https://paolopatierno.wordpress.com/2013/10/10/mqtt-su-ssltls-con-la-libreria-m2mqtt-ed-il-broker-mosquitto/
+
 ##### This has some clues
 
 https://github.com/eclipse/paho.mqtt.m2mqtt/issues/67
