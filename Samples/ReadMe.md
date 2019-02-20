@@ -18,8 +18,7 @@ I got the self signed certificates to work on mosquitto sub/pub and a python exa
 `mosquitto_pub -h redacted.org --cafile ./ca.crt   -t "xamtest" -m "A message sent on port 8883" -p 8883 -d  --cert ./consoleclient.crt --key ./consoleclient.key -d --insecure`
 ## python
 
-[PahoMqttSelfSigned.py](https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/PahoMqttSelfSigned.py)
-
+[PahoMqttSelfSigned.py](https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/Samples/PahoMqttSelfSigned.py)
 
 
 ## .net core
