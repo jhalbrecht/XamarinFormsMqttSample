@@ -8,6 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using uPLibrary.Networking.M2Mqtt;
@@ -30,6 +31,11 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 //var factory = new MqttFactory();
 //var mqttClient = factory.CreateMqttClient();
 //var mqttClient = new MqttFactory().CreateMqttClient();
+
+/*                          -->  My hero  <-- 
+*                          
+* https://stackoverflow.com/questions/42803493/unable-to-instantiate-x509certificate2-from-byte-array
+*/
 
 namespace MqttDataService
 {
@@ -79,21 +85,16 @@ namespace MqttDataService
                     string theBase64EncodedPfx = File.ReadAllText(thePfxPathOnDevice);
                     // byte[] pfxByteArrayFromBase64String = Convert.FromBase64String(theBase64EncodedPfx);
 
-                    /*                          -->  My hero  <-- 
-                    *                          
-                    * https://stackoverflow.com/questions/42803493/unable-to-instantiate-x509certificate2-from-byte-array
-                    */
-
                     byte[] certificate = Convert.FromBase64String(theBase64EncodedPfx);
                     X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin");
-
-                    //X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin", X509KeyStorageFlags.DefaultKeySet);
 
                     //
                     // We have the certificates, connect to the broker
                     //
 
                     LogCertificatInformation(clientCert);
+                    // LogX509ChainInformation(clientCert);
+                    // DoX509ExtensionClass();
 
                     _client = new MqttClient(
                         GetHostName(_xpdSetting.MqttBrokerAddress),
@@ -106,7 +107,9 @@ namespace MqttDataService
                 }
                 else
                 {
+                    //_client = new MqttClient(_xpdSetting.MqttBrokerAddress);
                     _client = new MqttClient(_xpdSetting.MqttBrokerAddress);
+
                 }
 
                 // Android permissions?
@@ -142,6 +145,77 @@ namespace MqttDataService
             Debug.WriteLine("{0}Raw Data Length: {1}{0}", Environment.NewLine, x509.RawData.Length);
             Debug.WriteLine("{0}Certificate to string: {1}{0}", Environment.NewLine, x509.ToString(true));
         }
+
+        private static void LogX509ChainInformation(X509Certificate2 x509)
+        {
+            //Output chain information of the selected certificate.
+            X509Chain ch = new X509Chain();
+            ch.ChainPolicy.RevocationMode = X509RevocationMode.Online;
+            ch.Build(x509);
+            Debug.WriteLine("\nChain Information");
+            Debug.WriteLine("Chain revocation flag: {0}", ch.ChainPolicy.RevocationFlag);
+            Debug.WriteLine("Chain revocation mode: {0}", ch.ChainPolicy.RevocationMode);
+            Debug.WriteLine("Chain verification flag: {0}", ch.ChainPolicy.VerificationFlags);
+            Debug.WriteLine("Chain verification time: {0}", ch.ChainPolicy.VerificationTime);
+            Debug.WriteLine("Chain status length: {0}", ch.ChainStatus.Length);
+            Debug.WriteLine("Chain application policy count: {0}", ch.ChainPolicy.ApplicationPolicy.Count);
+            Debug.WriteLine("Chain certificate policy count: {0} {1}\n", ch.ChainPolicy.CertificatePolicy.Count, Environment.NewLine);
+        }
+
+        private static void DoX509ExtensionClass()
+        {
+            try
+            {
+                X509Store store = new X509Store("MY", StoreLocation.CurrentUser);
+                store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
+
+                X509Certificate2Collection collection = (X509Certificate2Collection)store.Certificates;
+                for (int i = 0; i < collection.Count; i++)
+                {
+                    foreach (X509Extension extension in collection[i].Extensions)
+                    {
+                        Console.WriteLine(extension.Oid.FriendlyName + "(" + extension.Oid.Value + ")");
+
+
+                        if (extension.Oid.FriendlyName == "Key Usage")
+                        {
+                            X509KeyUsageExtension ext = (X509KeyUsageExtension)extension;
+                            Console.WriteLine(ext.KeyUsages);
+                        }
+
+                        if (extension.Oid.FriendlyName == "Basic Constraints")
+                        {
+                            X509BasicConstraintsExtension ext = (X509BasicConstraintsExtension)extension;
+                            Console.WriteLine(ext.CertificateAuthority);
+                            Console.WriteLine(ext.HasPathLengthConstraint);
+                            Console.WriteLine(ext.PathLengthConstraint);
+                        }
+
+                        if (extension.Oid.FriendlyName == "Subject Key Identifier")
+                        {
+                            X509SubjectKeyIdentifierExtension ext = (X509SubjectKeyIdentifierExtension)extension;
+                            Console.WriteLine(ext.SubjectKeyIdentifier);
+                        }
+
+                        if (extension.Oid.FriendlyName == "Enhanced Key Usage")
+                        {
+                            X509EnhancedKeyUsageExtension ext = (X509EnhancedKeyUsageExtension)extension;
+                            OidCollection oids = ext.EnhancedKeyUsages;
+                            foreach (Oid oid in oids)
+                            {
+                                Console.WriteLine(oid.FriendlyName + "(" + oid.Value + ")");
+                            }
+                        }
+                    }
+                }
+                store.Close();
+            }
+            catch (CryptographicException)
+            {
+                Console.WriteLine("Information could not be written out for this certificate.");
+            }
+        }
+
 
         private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
@@ -185,16 +259,14 @@ namespace MqttDataService
         }
         private static bool MyRemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            // this was handy while learning and trying to get more detail on policy errors.
-            // And it was just handy again when trying to implement the FilePicker!
+            // this foreach was handy while learning and trying to get more detail on policy errors.
 
             foreach (X509ChainStatus item in chain.ChainStatus)
             {
                 Debug.WriteLine($"\nX509ChainStatus item: {item.StatusInformation}\n");
             }
 
-            //return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
-
+            return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
 
             if (sslPolicyErrors == SslPolicyErrors.None)
                 return true;

@@ -1,5 +1,6 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Implementations;
 using System;
 using System.Text;
 
@@ -19,6 +20,7 @@ namespace Chkr1011MQTTnet.ConsoleApp
                 .WithTcpServer("iot.eclipse.org")
                 //.WithCredentials("bud", "%spencer%")
                 //.WithTls()
+                //.TlsEndpointOptions.Certificate = new X509Certificate2(File.ReadAllBytes(@"C:\Certs\cert.pem")).RawData; 
                 .WithCleanSession()
                 .Build();
 
@@ -40,6 +42,15 @@ namespace Chkr1011MQTTnet.ConsoleApp
                 Console.WriteLine();
             };
 
+            MqttTcpChannel.CustomCertificateValidationCallback = (x509Certificate, x509Chain, sslPolicyErrors, mqttClientTcpOptions) =>
+            {
+                if (mqttClientTcpOptions.Server == "server_with_revoked_cert")
+                {
+                    return true;
+                }
+
+                return false;
+            };
 
             Console.ReadKey();
         }

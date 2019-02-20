@@ -1,4 +1,5 @@
 # Mqtt Sample for Xamarin.forms
+## See the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
 
 ## Mqtt Sammple running
 Goal of the project is to secure with TLS. This just a fun little pub/sub chat app. 
@@ -7,7 +8,7 @@ In the screenshot you'll see the syntax for mosquitto_pub from the command line 
 
 ![](images/XamFormsMqttUwpDemo.JPG)
 
-Using the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
+
 
 See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional page images
 
@@ -24,13 +25,6 @@ Learn best practices / real world way(s) to install and use certificates in mobi
   - add new certs?
 
 ## Resources
-### clients
-### Mohaqeq M2Mqtt Fork
-This is the client I've used in the past. This fork is a drop in my services lib. Thanks Hamidreza Mohaqeq!
-The Eclipse.org paho M2Mqtt hasn't been worked on in a while..
-From mohaqeq on GitHub and converted to .NET Standard 2.0 library
-* [M2MqttDotnetCore ](https://www.nuget.org/packages/M2MqttDotnetCore/) NuGet
-* https://github.com/mohaqeq/paho.mqtt.m2mqtt
 
 ### Reading
 Help me find some great and current reading material. Maybe some videos? Again; **Looking for real world examples** of how to handle installing certificartes in 
@@ -82,6 +76,9 @@ https://docs.microsoft.com/en-us/dotnet/api/system.net.security.remotecertificat
 https://www.bevywise.com/blog/creating-ssl-certificate-secure-mqtt-communication/
 
 https://paolopatierno.wordpress.com/2013/10/10/mqtt-su-ssltls-con-la-libreria-m2mqtt-ed-il-broker-mosquitto/
+
+Self-Signed Certificates and Xamarin.Android
+https://dotnetdevaddict.co.za/2015/07/31/self-signed-certificates-and-xamarin-android/comment-page-1/
 
 ##### This has some clues
 

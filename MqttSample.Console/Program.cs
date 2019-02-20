@@ -1,8 +1,11 @@
-﻿using M2Mqtt;
-using M2Mqtt.Messages;
+﻿//using M2Mqtt;
+//using M2Mqtt.Messages;
 using System;
 using System.Net.Security;
+//using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace MqttSample.ConsoleApp
 {
@@ -16,6 +19,8 @@ namespace MqttSample.ConsoleApp
     {
         static void Main(string[] args)
         {
+            // X509StoreNames();
+
             Console.WriteLine("mqtt and TLS with self signed certificate.\nDid you install your cert in Trusted root certification authorities on this machine?\n");
             try
             {
@@ -25,7 +30,7 @@ namespace MqttSample.ConsoleApp
                 X509Certificate caCert =
                         X509Certificate.CreateFromCertFile($"c:/jstuff/tls/debbie/selfsigned/ca.crt");
 
-                MqttClient _client = new MqttClient("redacted.org", 8883, true, caCert, clientCert, MqttSslProtocols.TLSv1_2, MyRemoteCertificateValidationCallback);
+                MqttClient _client = new MqttClient("jeffa.org", 8883, true, caCert, clientCert, MqttSslProtocols.TLSv1_2, MyRemoteCertificateValidationCallback);
 
                 _client.MqttMsgPublishReceived += _client_MqttMsgPublishReceived;
                 //string clientId = Guid.NewGuid().ToString();
@@ -39,6 +44,36 @@ namespace MqttSample.ConsoleApp
                 Console.WriteLine(e.Message.ToString());
             }
         }
+
+        //private static void X509StoreNames()
+        //{
+        //    Console.WriteLine("\r\nExists Certs Name and Location");
+        //    Console.WriteLine("------ ----- -------------------------");
+
+        //    foreach (StoreLocation storeLocation in (StoreLocation[])
+        //        Enum.GetValues(typeof(StoreLocation)))
+        //    {
+        //        foreach (StoreName storeName in (StoreName[])
+        //            Enum.GetValues(typeof(StoreName)))
+        //        {
+        //            X509Store store = new X509Store(storeName, storeLocation);
+
+        //            try
+        //            {
+        //                store.Open(OpenFlags.OpenExistingOnly);
+
+        //                Console.WriteLine("Yes    {0,4}  {1}, {2}",
+        //                    store.Certificates.Count, store.Name, store.Location);
+        //            }
+        //            catch (CryptographicException)
+        //            {
+        //                Console.WriteLine("No           {0}, {1}",
+        //                    store.Name, store.Location);
+        //            }
+        //        }
+        //        Console.WriteLine();
+        //    }
+        //}
 
         private static bool MyRemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {

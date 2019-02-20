@@ -85,7 +85,6 @@ namespace MqttSample.Utility.Services
                     return; // user canceled file picking
 
                 string fileName = fileData.FileName;
-                // string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
                 string content = Convert.ToBase64String(fileData.DataArray, 0, fileData.DataArray.Length,
                                 Base64FormattingOptions.None);
 

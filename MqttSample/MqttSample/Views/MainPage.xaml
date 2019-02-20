@@ -14,19 +14,22 @@
         <Label Text="This is my hamburger menu. It's a bit cheezie" />
         <Label Text="" />
 
-        <Image Source="CheeseBurger150.jpg" />
+        <Label Text="No idea why images stoped working in this page. Maybe after upgrade to Xamarin.Forms 4.0.0.135214-pre4" FontSize="Large"/>
+        <!--<Image Source="CheeseBurger150.jpg" />-->
+
+        <!--<Image Source="CheeseBurger.jpg"/>-->
 
         <Frame BorderColor="Black"
                Margin="20"
                Padding="20">
             <StackLayout>
-                <Button Text="Navigate to Settings page"
-                        Command="{Binding SettingsNavigateCommand}" />
+                <!--<Button Text="Navigate to Settings page"
+                        Command="{Binding SettingsNavigateCommand}" />-->
 
-                <Button Text="Navigate to mqtt viewer page"
+                <Button Text="mqtt chat page"
                         Command="{Binding MqttNavigateCommand}" />
 
-                <Button Text="Another settings page"
+                <Button Text="Settings"
                         Command="{Binding SettingsPage}" />
             </StackLayout>
         </Frame>

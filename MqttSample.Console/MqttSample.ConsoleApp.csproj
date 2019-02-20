@@ -9,8 +9,4 @@
     <PackageReference Include="M2MqttDotnetCore" Version="1.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\M2MqttDotnetCore\M2MqttDotnetCore.csproj" />
-  </ItemGroup>
-
 </Project>
