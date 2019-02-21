@@ -18,5 +18,5 @@ probably a "RTFM bunky!" on twitter I could quickly calculate how long I've been
 This code will display create date and age of a GitHub repository.
 ## How to use
 change these to your liking;
-* string repoOwner = "jhalbrecht";                Your/any GitHub account.
-* string repo = "XamarinFormsMqttSample";         Your/any Repository.
+* `string repoOwner = "jhalbrecht";`                Your/any GitHub account.
+* `string repo = "XamarinFormsMqttSample";`         Your/any Repository.
