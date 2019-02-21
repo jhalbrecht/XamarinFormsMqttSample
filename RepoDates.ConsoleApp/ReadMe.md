@@ -1,6 +1,8 @@
 ﻿# RepoDates.ConsoleApp
 Calculate the number of days since a Github Repository has been created.
 
+Honestly, I've been searching and searching and keeping the Twitter trolling to a minimum.
+![](https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/images/NewIssueOrRTFM.jpg)
 
 ## Why did I write this?
 
