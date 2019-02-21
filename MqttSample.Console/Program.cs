@@ -30,7 +30,7 @@ namespace MqttSample.ConsoleApp
                 X509Certificate caCert =
                         X509Certificate.CreateFromCertFile($"c:/jstuff/tls/debbie/selfsigned/ca.crt");
 
-                MqttClient _client = new MqttClient("jeffa.org", 8883, true, caCert, clientCert, MqttSslProtocols.TLSv1_2, MyRemoteCertificateValidationCallback);
+                MqttClient _client = new MqttClient("redacted.org", 8883, true, caCert, clientCert, MqttSslProtocols.TLSv1_2, MyRemoteCertificateValidationCallback);
 
                 _client.MqttMsgPublishReceived += _client_MqttMsgPublishReceived;
                 //string clientId = Guid.NewGuid().ToString();

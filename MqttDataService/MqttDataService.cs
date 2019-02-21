@@ -13,6 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using Xamarin.Forms;
 
 //using System.IO;
 //using Xamarin.Forms;
@@ -57,6 +58,12 @@ namespace MqttDataService
 
         public async Task Initialize()
         {
+            if (Device.RuntimePlatform == Device.UWP)
+                Debug.WriteLine($"\nUWP\n");
+
+            if (Device.RuntimePlatform == Device.Android)
+                Debug.WriteLine($"\nAndroid\n");
+
             try
             {
                 if (_xpdSetting.UseTls)
@@ -87,6 +94,28 @@ namespace MqttDataService
 
                     byte[] certificate = Convert.FromBase64String(theBase64EncodedPfx);
                     X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin");
+
+                    /*
+                     * https://stackoverflow.com/questions/45090618/xamarin-visual-studio-createcertfromfile-path-no-working
+                    AssetManager assets = this.Assets;
+                    using (Stream input = assets.Open("ca-bundle.crt"))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            int read;
+                            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                ms.Write(buffer, 0, read);
+                            }
+                            data = ms.ToArray();
+                        }
+                    }*/
+
+                    //Account account = new Account(...);
+                    //AccountStore store = AccountStore.Create();
+                    //store.Save(account, appName);
+
+
 
                     //
                     // We have the certificates, connect to the broker
@@ -215,8 +244,6 @@ namespace MqttDataService
                 Console.WriteLine("Information could not be written out for this certificate.");
             }
         }
-
-
         private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             var message = System.Text.Encoding.Default.GetString(e.Message);
@@ -274,5 +301,30 @@ namespace MqttDataService
             // Do not allow this client to communicate with unauthenticated servers.
             return false;
         }
+        //private void Thing()
+        //{
+        //    private Key generateAndStoreKey(String keyName, KEY_TYPE keyType, KeyPair keyPair) throws IOException {
+        //        Key key = null;
+        //        switch (keyType)
+        //        {
+        //            case PUBLIC:
+        //                key = keyPair.getPublic();
+        //                break;
+        //            case PRIVATE:
+        //                key = keyPair.getPrivate();
+        //                break;
+        //        }
+        //        byte[] keyBytes = key.getEncoded();
+        //        File keyFile = new File("D:\\MySecurityKeys\" + keyName);
+
+
+        //        FileOutputStream fos = new FileOutputStream(keyFile);
+        //        fos.write(keyBytes);
+        //        fos.flush();
+        //        fos.close();
+
+        //        return key;
+        //    }
+        //}
     }
 }
