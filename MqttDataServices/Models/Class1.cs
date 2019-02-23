@@ -1,9 +1,11 @@
-﻿using System.Diagnostics;
+﻿using M2Mqtt;
+using M2Mqtt.Messages;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
+//using uPLibrary.Networking.M2Mqtt;
+//using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace MQTT.SubscriberTest
 {

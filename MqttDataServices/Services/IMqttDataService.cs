@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-namespace MqttDataService
+using System.Threading.Tasks;
+namespace MqttDataServices.Services
 {
     public interface IMqttDataService
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Essentials;
 
-namespace MqttDataService.Models
+namespace MqttDataServices.Models
 {
     public class XpdSettings : IXpdSettings
     {

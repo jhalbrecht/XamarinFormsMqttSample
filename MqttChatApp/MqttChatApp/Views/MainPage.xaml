@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MqttChatApp.Views.MainPage"
+                xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="{Binding Title}"
+             BackgroundColor="AntiqueWhite">
+
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+        <Label Text="An app to explore MQTT and learn how to secure with TLS" />
+        <!--<Label Text="This is my hamburger menu. It's a bit cheezie" />-->
+        <Label Text="" />
+
+        <Image Source="CheeseBurger150.jpg" />
+
+        <Frame BorderColor="Black"
+               Margin="20"
+               Padding="20">
+            <StackLayout>
+                <!--<Button Text="Navigate to Settings page"
+                        Command="{Binding SettingsNavigateCommand}" />-->
+
+                <Button Text="mqtt chat page"
+                        Command="{Binding MqttNavigateCommand}" />
+
+                <Button Text="Settings"
+                        Command="{Binding SettingsPage}" />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

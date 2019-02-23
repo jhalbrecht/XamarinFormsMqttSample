@@ -1,14 +1,13 @@
 ﻿using Prism;
 using Prism.Ioc;
-using MqttSample.ViewModels;
-using MqttSample.Views;
+using MqttChatApp.ViewModels;
+using MqttChatApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MqttDataServices.Services;
-using MqttSample.Utility.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace MqttSample
+namespace MqttChatApp
 {
     public partial class App
     {
@@ -24,21 +23,19 @@ namespace MqttSample
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
-            // await NavigationService.NavigateAsync("MainPage");
 
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<SettingsView, SettingsViewViewModel>();
-            containerRegistry.RegisterForNavigation<MqttView, MqttViewViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
 
             containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
             containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService>();
+            containerRegistry.RegisterForNavigation<ChatPage, ChatPageViewModel>();
         }
     }
 }

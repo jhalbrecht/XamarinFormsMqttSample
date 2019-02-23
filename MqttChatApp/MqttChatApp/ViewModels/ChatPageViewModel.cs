@@ -1,26 +1,24 @@
 ﻿using Messaging.Models;
 using MqttDataServices.Services;
-//using MqttDataService.Models;
-using MqttSample.Utility.Services;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
-namespace MqttSample.ViewModels
+namespace MqttChatApp.ViewModels
 {
-    public class MqttViewViewModel : BindableBase
+    public class ChatPageViewModel : BindableBase
     {
         private IXpdSettings _xpdsettings;
         private IEventAggregator _eventAggregator;
         private IMqttDataService _mqttDataService;
-
-        public MqttViewViewModel(IEventAggregator eventAggregator, IMqttDataService MqttDataService, IXpdSettings xpdSettings)
+        public ChatPageViewModel(IEventAggregator eventAggregator, IMqttDataService MqttDataService, IXpdSettings xpdSettings)
         {
             _xpdsettings = xpdSettings;
             _eventAggregator = eventAggregator;
@@ -30,12 +28,11 @@ namespace MqttSample.ViewModels
                 await _mqttDataService.Initialize();
             });
             _eventAggregator.GetEvent<MqttMessageTransport>().Subscribe(MqttMessageTransportMessageReceived, ThreadOption.UIThread);
-            HotKeyCommandButton = new Command<string>(DoHotKeyCommandButton);
+            // HotKeyCommandButton = new Command<string>(DoHotKeyCommandButton);
             PublishMessageCommand = new DelegateCommand(ExecutePublishMessageCommand, CanPublish);
 
             MosquittoPubSub = $"mosquitto_pub -h {_xpdsettings.MqttBrokerAddress} -t {_xpdsettings.MqttBrokerTopic} -m 'Your message goes here.'";
         }
-
         /// <summary>
         /// PublishMessageCommand
         /// </summary>
@@ -67,38 +64,6 @@ namespace MqttSample.ViewModels
             }
         }
 
-
-        /// <summary>
-        /// Hot key command
-        /// </summary>
-        public ICommand HotKeyCommandButton { get; private set; }
-
-        void DoHotKeyCommandButton(string value)
-        {
-            // Debug.WriteLine($"DoPublishFritzMessageCommand parm value: {value}");
-
-            switch (value)
-            {
-                case "Fritz":
-                    _mqttDataService.PublishMqttMessage($"{value} says; \"And then?\"");
-                    break;
-                case "James":
-                    _mqttDataService.PublishMqttMessage($"{value} says; Monkey see, monkey dodo");
-                    break;
-                case "TimH":
-                    _mqttDataService.PublishMqttMessage(
-                        $"{value} says; Bicycle, bicycle, bicycle I want to ride my bicycle, bicycle, bicycle");
-                    break;
-                case "BrianL":
-                    _mqttDataService.PublishMqttMessage(
-                        $"{value} says; Prism Prism Xamarin.Forms Prism all the things!");
-                    break;
-                case "blowdart":
-                    _mqttDataService.PublishMqttMessage(
-                        $"{value} says; Well did you?");
-                    break;
-            }
-        }
 
         public string MosquittoPubSub { get; set; }
 

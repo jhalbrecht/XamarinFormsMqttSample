@@ -1,6 +1,7 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Implementations;
+using MQTTnet.Serializer;
 using System;
 using System.Text;
 
@@ -15,12 +16,32 @@ namespace Chkr1011MQTTnet.ConsoleApp
 
             var factory = new MqttFactory();
             var mqttClient = factory.CreateMqttClient();
+            var _mqttOptions = new MqttClientTcpOptions();
+            _mqttOptions.TlsOptions = new MqttClientTlsOptions
+            {
+                UseTls = true,
+                AllowUntrustedCertificates = true,
+                IgnoreCertificateChainErrors = true,
+                IgnoreCertificateRevocationErrors = true
+            };
             var options = new MqttClientOptionsBuilder()
                 .WithClientId("Chkr1011MQTTnetConsoleApp")
                 .WithTcpServer("iot.eclipse.org")
+                .WithProtocolVersion(MqttProtocolVersion.V311)
                 //.WithCredentials("bud", "%spencer%")
                 //.WithTls()
                 //.TlsEndpointOptions.Certificate = new X509Certificate2(File.ReadAllBytes(@"C:\Certs\cert.pem")).RawData; 
+
+
+                //options.TlsOptions = new MqttClientTlsOptions
+                //{
+                //    UseTls = true,
+                //    AllowUntrustedCertificates = true,
+                //    IgnoreCertificateChainErrors = true,
+                //    IgnoreCertificateRevocationErrors = true
+                //};
+
+
                 .WithCleanSession()
                 .Build();
 

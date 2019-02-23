@@ -1,17 +1,18 @@
 ﻿using MqttDataServices.Services;
-using MqttSample.Utility.Services;
+// using MqttSample.Utility.Services;
 using Prism.Commands;
 using Prism.Mvvm;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
-
-namespace MqttSample.ViewModels
+namespace MqttChatApp.ViewModels
 {
-    public class SettingsPageViewModel : BindableBase // TODO I want to use ViewModelBase Brian @brianlagunas di problems...
+    public class SettingsPageViewModel : BindableBase
     {
         private IXpdSettings _xPdSetting;
         private IMqttDataService _mqttDataService;
-
         public SettingsPageViewModel(IXpdSettings xpdSettings, IMqttDataService mqttDataService)
         {
             Title = "new settings page";
@@ -20,6 +21,7 @@ namespace MqttSample.ViewModels
 
             LoadCa = new DelegateCommand(() => _xPdSetting.LoadCa());
             LoadPfx = new DelegateCommand(() => _xPdSetting.LoadPfx());
+
         }
 
         public ICommand LoadCa { get; set; }

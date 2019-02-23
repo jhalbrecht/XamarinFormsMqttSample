@@ -1,5 +1,10 @@
-﻿using Messaging.Models;
-using MqttSample.Utility.Services;
+// using Java.Security;
+using M2Mqtt;
+using M2Mqtt.Messages;
+//using uPLibrary.Networking.M2Mqtt;
+//using uPLibrary.Networking.M2Mqtt.Messages;
+using Messaging.Models;
+//using MqttSample.Utility.Services;
 using Prism.Events;
 using Prism.Services;
 using System;
@@ -11,8 +16,6 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
 using Xamarin.Forms;
 
 //using System.IO;
@@ -38,7 +41,7 @@ using Xamarin.Forms;
 * https://stackoverflow.com/questions/42803493/unable-to-instantiate-x509certificate2-from-byte-array
 */
 
-namespace MqttDataService
+namespace MqttDataServices.Services
 {
     public class MqttDataService : IMqttDataService
     {
@@ -54,10 +57,15 @@ namespace MqttDataService
             _xpdSetting = xpdSetting;
             _eventAggregator = eventAggregator;
             _pageDialogService = pageDialogService;
+
+            Debug.WriteLine($"\n\n in MqttDataService constructor \n\n");
+           
         }
 
         public async Task Initialize()
         {
+            Debug.WriteLine($"\n\n in MqttDataService Initialize() \n\n");
+
             if (Device.RuntimePlatform == Device.UWP)
                 Debug.WriteLine($"\nUWP\n");
 
@@ -95,6 +103,17 @@ namespace MqttDataService
                     byte[] certificate = Convert.FromBase64String(theBase64EncodedPfx);
                     X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin");
 
+                    //var certStore = KeyStore.GetInstance("AndroidCAStore");
+                    //[Android.Runtime.Register("java/security/KeyStore", DoNotGenerateAcw = true)]
+
+                    // ToDo: Study this several times; https://stackoverflow.com/questions/3027273/how-to-store-and-load-keys-using-java-security-keystore-class
+
+
+
+
+                    //var certStore = KeyStore.GetInstance("AndroidCAStore");
+                    //certStore.Load(null);
+
                     /*
                      * https://stackoverflow.com/questions/45090618/xamarin-visual-studio-createcertfromfile-path-no-working
                     AssetManager assets = this.Assets;
@@ -115,6 +134,9 @@ namespace MqttDataService
                     //AccountStore store = AccountStore.Create();
                     //store.Save(account, appName);
 
+                    // ToDo: research https://stackoverflow.com/questions/28276182/invalid-certificate-received-from-server-xamarin-android/28550770
+                    //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
+
 
 
                     //
@@ -131,8 +153,9 @@ namespace MqttDataService
                         _xpdSetting.UseTls,
                         caCert,
                         clientCert,
-                        MqttSslProtocols.TLSv1_2,
-                        MyRemoteCertificateValidationCallback);
+                        MqttSslProtocols.TLSv1_2
+                        //MyRemoteCertificateValidationCallback
+                        );
                 }
                 else
                 {
@@ -273,6 +296,7 @@ namespace MqttDataService
             }
             catch (SocketException ex)
             {
+                Debug.WriteLine($"ex: {ex}");
                 return ipAddress;
             }
             return null;
@@ -293,7 +317,7 @@ namespace MqttDataService
                 Debug.WriteLine($"\nX509ChainStatus item: {item.StatusInformation}\n");
             }
 
-            return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
+            // return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
 
             if (sslPolicyErrors == SslPolicyErrors.None)
                 return true;
