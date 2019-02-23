@@ -1,6 +1,8 @@
 ﻿# RepoDates.ConsoleApp
 Calculate the number of days since a Github Repository has been created.
 
+Honestly, I've been searching and searching and keeping the Twitter trolling to a minimum.
+![](https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/images/NewIssueOrRTFM.jpg)
 
 ## Why did I write this?
 
@@ -16,5 +18,5 @@ probably a "RTFM bunky!" on twitter I could quickly calculate how long I've been
 This code will display create date and age of a GitHub repository.
 ## How to use
 change these to your liking;
-* string repoOwner = "jhalbrecht";                Your/any GitHub account.
-* string repo = "XamarinFormsMqttSample";         Your/any Repository.
+* `string repoOwner = "jhalbrecht";`                Your/any GitHub account.
+* `string repo = "XamarinFormsMqttSample";`         Your/any Repository.
