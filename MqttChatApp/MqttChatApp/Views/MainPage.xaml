@@ -7,6 +7,28 @@
              Title="{Binding Title}"
              BackgroundColor="AntiqueWhite">
 
+
+    <!--<NavigationPage.TitleView>
+        <Label Text="jeffa was here"/>
+    </NavigationPage.TitleView>-->
+
+    <!--<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+            <On Platform="Android" Value="0, 0, 0, 0" />
+            <On Platform="UWP" Value="0, 0, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>-->
+
+    <!--if (Device.RuntimePlatform == Device.iOS)
+ {
+ HasShadow = false;
+ OutlineColor = Color.Transparent;
+ BackgroundColor = Color.Transparent;
+ }-->
+
+
+
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
         <Label Text="An app to explore MQTT and learn how to secure with TLS" />

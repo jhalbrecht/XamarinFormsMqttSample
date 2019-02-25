@@ -17,6 +17,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 //using System.IO;
 //using Xamarin.Forms;
@@ -59,7 +60,7 @@ namespace MqttDataServices.Services
             _pageDialogService = pageDialogService;
 
             Debug.WriteLine($"\n\n in MqttDataService constructor \n\n");
-           
+
         }
 
         public async Task Initialize()
@@ -102,6 +103,11 @@ namespace MqttDataServices.Services
 
                     byte[] certificate = Convert.FromBase64String(theBase64EncodedPfx);
                     X509Certificate2 clientCert = new X509Certificate2(certificate, "xamarin");
+
+                    //            [Android.Runtime.Register("java/security/KeyStore", DoNotGenerateAcw = true)]
+                    //public class KeyStore : Object
+                    //{
+                    //}
 
                     //var certStore = KeyStore.GetInstance("AndroidCAStore");
                     //[Android.Runtime.Register("java/security/KeyStore", DoNotGenerateAcw = true)]
@@ -156,6 +162,7 @@ namespace MqttDataServices.Services
                         MqttSslProtocols.TLSv1_2
                         //MyRemoteCertificateValidationCallback
                         );
+
                 }
                 else
                 {
