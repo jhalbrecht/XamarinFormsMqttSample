@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
-
-namespace MqttDataServices.Services
+﻿namespace MqttDataServices.Models
 {
     public interface IXpdSettings
     {
@@ -11,8 +9,6 @@ namespace MqttDataServices.Services
         string MqttBrokerUserPassword { get; set; }
         string MqttBrokerTopic { get; set; }
         bool UseTls { get; set; }
-        Task LoadCa();
-        Task LoadPfx();
     }
 }
 

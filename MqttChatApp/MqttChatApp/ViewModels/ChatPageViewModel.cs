@@ -1,6 +1,7 @@
 ﻿using Messaging.Models;
+using MqttChatApp.XamarinMqttDataServices.Services;
 using MqttChattApp.Utility.Services;
-using MqttDataServices.Services;
+//using MqttDataServices.Services;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -64,7 +65,6 @@ namespace MqttChatApp.ViewModels
                 SetProperty(ref _isMqttPublishButtonEnabled, value);
             }
         }
-
 
         public string MosquittoPubSub { get; set; }
 

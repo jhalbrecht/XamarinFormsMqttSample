@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MqttDataServices\MqttDataServices.csproj" />
+    <ProjectReference Include="..\..\MqttChatApp.XamarinMqttDataServices\MqttChatApp.XamarinMqttDataServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>

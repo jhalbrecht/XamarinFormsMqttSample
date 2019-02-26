@@ -4,8 +4,9 @@ using MqttChatApp.ViewModels;
 using MqttChatApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MqttDataServices.Services;
+// using MqttDataServices.Services;
 using MqttChattApp.Utility.Services;
+using MqttChatApp.XamarinMqttDataServices.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MqttChatApp
@@ -24,7 +25,6 @@ namespace MqttChatApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
@@ -33,10 +33,11 @@ namespace MqttChatApp
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
-
-            containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
-            containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService>();
             containerRegistry.RegisterForNavigation<ChatPage, ChatPageViewModel>();
+            containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
+
+            // containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService>();
+            containerRegistry.RegisterSingleton<IMqttDataService, XamarinMqttDataService>();
         }
     }
 }

@@ -1,5 +1,6 @@
-﻿using MqttChattApp.Utility.Services;
-using MqttDataServices.Services;
+﻿using MqttChatApp.XamarinMqttDataServices.Services;
+using MqttChattApp.Utility.Services;
+//using MqttDataServices.Services;
 // using MqttSample.Utility.Services;
 using Prism.Commands;
 using Prism.Mvvm;
