@@ -5,6 +5,7 @@ using MqttChatApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MqttDataServices.Services;
+using MqttChattApp.Utility.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MqttChatApp

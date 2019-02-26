@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Models\IXpdSettings.cs" />
     <Compile Remove="Models\XpdMqttSettings.cs" />
+    <Compile Remove="Services\IXpdSettings.cs" />
+    <Compile Remove="Services\XpdMqttSettings.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Messaging\Messaging.csproj" />
+    <ProjectReference Include="..\MqttChatApp.Utility\MqttChattApp.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
-﻿using Plugin.FilePicker.Abstractions;
+using Plugin.FilePicker.Abstractions;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MqttSample.Utility.Services
+namespace MqttChattApp.Utility.Services
 {
     public class XpdSettings : IXpdSettings
     {

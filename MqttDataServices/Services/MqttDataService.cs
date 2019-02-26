@@ -4,6 +4,7 @@ using M2Mqtt.Messages;
 //using uPLibrary.Networking.M2Mqtt;
 //using uPLibrary.Networking.M2Mqtt.Messages;
 using Messaging.Models;
+using MqttChattApp.Utility.Services;
 //using MqttSample.Utility.Services;
 using Prism.Events;
 using Prism.Services;

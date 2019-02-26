@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
-namespace MqttSample.Utility.Services
+namespace MqttChattApp.Utility.Services
 {
     public interface IXpdSettings
     {
