@@ -34,12 +34,12 @@
         </ListView>
 
         <StackLayout Orientation="Horizontal"
-                     VerticalOptions="EndAndExpand">
+                     VerticalOptions="End">
 
             <Entry x:Name="PublisEntry"
                    VerticalOptions="FillAndExpand"
                    HorizontalOptions="FillAndExpand"
-                   Placeholder="Enter mqtt message for publishing here."
+                   Placeholder="mqtt message to publish"
                    Text="{Binding PublishMessage, Mode=TwoWay}" />
             <Button x:Name="MqttPublishButton"
                     Text="Publish"
