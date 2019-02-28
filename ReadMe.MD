@@ -1,15 +1,17 @@
 # Mqtt Sample for Xamarin.forms
+Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 ## See the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
 
 * 2/25/2019 MqttSample retired in favor of [MqttChatApp](https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/MqttChatApp)
 
 ## Mqtt Sammple running
-Goal of the project is to secure with TLS. This just a fun little pub/sub chat app. 
+Goal of the project is to demonstrate how to secure a XamarinForms app with TLS. 
 
 In the screenshot you'll see the syntax for mosquitto_pub from the command line configured with the Mqtt Sample app settings.
 
-![](images/XamrinFormsMqttUwpChatApp.JPG)
-
+<p align="left">
+  <img height="600" src="https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/images/XamrinFormsMqttUwpChatApp.JPG">
+</p>
 
 
 See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional page images
