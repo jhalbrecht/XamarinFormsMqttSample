@@ -5,7 +5,7 @@ Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 * 2/25/2019 MqttSample retired in favor of [MqttChatApp](https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/MqttChatApp)
 
 ## Mqtt Sammple running
-Goal of the project is to secure with TLS. This just a fun little pub/sub chat app. 
+Goal of the project is to demonstrate how to secure a XamarinForms app with TLS. 
 
 In the screenshot you'll see the syntax for mosquitto_pub from the command line configured with the Mqtt Sample app settings.
 
