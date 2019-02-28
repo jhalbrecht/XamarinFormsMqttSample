@@ -9,8 +9,6 @@ Goal of the project is to secure with TLS. This just a fun little pub/sub chat a
 
 In the screenshot you'll see the syntax for mosquitto_pub from the command line configured with the Mqtt Sample app settings.
 
-![](images/XamrinFormsMqttUwpChatApp.JPG)
-
 <p align="left">
   <img height="600" src="https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/images/XamrinFormsMqttUwpChatApp.JPG">
 </p>
