@@ -11,6 +11,9 @@ In the screenshot you'll see the syntax for mosquitto_pub from the command line 
 
 ![](images/XamrinFormsMqttUwpChatApp.JPG)
 
+<p align="left">
+  <img height="600" src="https://github.com/jhalbrecht/XamarinFormsMqttSample/blob/master/images/XamrinFormsMqttUwpChatApp.JPG">
+</p>
 
 
 See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional page images
