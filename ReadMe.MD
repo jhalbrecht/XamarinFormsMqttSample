@@ -1,4 +1,5 @@
 # Mqtt Sample for Xamarin.forms
+Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 ## See the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
 
 * 2/25/2019 MqttSample retired in favor of [MqttChatApp](https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/MqttChatApp)
