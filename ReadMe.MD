@@ -5,17 +5,26 @@ Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 * 2/25/2019 MqttSample retired in favor of [MqttChatApp](https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/MqttChatApp)
 
 ## Goal
-Goal of the project is to demonstrate how to secure a XamarinForms app with [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) to connect to a [Mosquitto broker](https://mosquitto.org/).
+Goal of the project is to demonstrate how to secure a XamarinForms app with [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) to connect to a [Mosquitto broker](https://mosquitto.org/). 
+
+Learn best practices / real world way(s) to install and use certificates in mobile apps supported by Xamarin.Forms UWP, android and ios
 
 
-In the headlines
+### In the headlines
 * iot growth
 * iot security (lack of)
+
+![](/images/CiscoIotTrendsChart.jpeg)
+
 
 I've been unable to locate a sample demonstrating a secure connecton. I feel that this is an important topic to discuss and provide solution examples.
 
 
-![](/images/CiscoIotTrendsChart.jpeg)
+### Qs about Goal...
+
+* Is there a platform way to;
+  - access certs?
+  - add new certs?
 
 
 ## Mqtt Sammple running
@@ -35,13 +44,6 @@ See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki
 ## Why?
 I'm using this repository to learn how to secure my Xamarin.Forms applications with for example a Let's Encrypt cerfificate. In a **real world** way!
 
-## Goal
-Learn best practices / real world way(s) to install and use certificates in mobile apps supported by Xamarin.Forms UWP, android and ios
-### Qs about Goal...
-
-* Is there a platform way to;
-  - access certs?
-  - add new certs?
 
 ## Resources
 
