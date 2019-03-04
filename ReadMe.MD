@@ -4,8 +4,23 @@ Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 
 * 2/25/2019 MqttSample retired in favor of [MqttChatApp](https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/MqttChatApp)
 
+## Goal
+Goal of the project is to demonstrate how to secure a XamarinForms app with [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) to connect to a [Mosquitto broker](https://mosquitto.org/).
+
+
+In the headlines
+* iot growth
+* iot security (lack of)
+
+I've been unable to locate a sample demonstrating a secure connecton. I feel that this is an important topic to discuss and provide solution examples.
+
+
+![](/images/CiscoIotTrendsChart.jpeg)
+
+
 ## Mqtt Sammple running
-Goal of the project is to demonstrate how to secure a XamarinForms app with TLS. 
+
+
 
 In the screenshot you'll see the syntax for mosquitto_pub from the command line configured with the Mqtt Sample app settings.
 
