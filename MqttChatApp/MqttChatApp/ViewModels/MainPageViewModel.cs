@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using MqttChatApp.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using System.Windows.Input;
 
@@ -7,11 +8,13 @@ namespace MqttChatApp.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
+        private readonly IGetCertificates _getCertificates;
 
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(INavigationService navigationService, IGetCertificates getCertificates)
             : base(navigationService)
         {
             _navigationService = navigationService;
+            _getCertificates = getCertificates;
             Title = "Mqtt Sample";
             SettingsPage = new DelegateCommand(DoSettingsPage);
         }
@@ -50,6 +53,7 @@ namespace MqttChatApp.ViewModels
 
         private async void DoSettingsPage()
         {
+            _getCertificates.DebugWrite($"MainPageViewModel DoSettingsPage()");
             await _navigationService.NavigateAsync("SettingsPage");
         }
     }

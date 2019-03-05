@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MqttDataServices.Services;
 using MqttChattApp.Utility.Services;
+using MqttChatApp.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MqttChatApp
@@ -33,10 +34,13 @@ namespace MqttChatApp
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChatPage, ChatPageViewModel>();
 
             containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
             containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService>();
-            containerRegistry.RegisterForNavigation<ChatPage, ChatPageViewModel>();
+
+            //if (Device.RuntimePlatform == Device.UWP)
+            //    containerRegistry.RegisterSingleton<IGetCertificates, GetCertificatesUWP>();
         }
     }
 }

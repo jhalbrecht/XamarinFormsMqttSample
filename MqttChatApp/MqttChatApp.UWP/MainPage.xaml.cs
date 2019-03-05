@@ -1,4 +1,6 @@
-﻿using Prism;
+﻿using MqttChatApp.Services;
+using MqttChatApp.UWP.Services;
+using Prism;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,7 @@ namespace MqttChatApp.UWP
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<IGetCertificates, GetCertificatesUWP>();
         }
     }
 }

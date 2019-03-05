@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using MqttChatApp.Droid.Services;
+using MqttChatApp.Services;
 using Prism;
 using Prism.Ioc;
 
@@ -26,6 +28,7 @@ namespace MqttChatApp.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<IGetCertificates, GetCertificatesAndroid>();
         }
     }
 }
