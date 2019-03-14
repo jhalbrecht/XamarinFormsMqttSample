@@ -3,6 +3,16 @@ Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 ## See the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
 
 * 2/25/2019 MqttSample retired in favor of [MqttChatApp](https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/MqttChatApp)
+* 3/14/2019 Although I've been initally going down a self signed client certificate path, I'm switching my efforts to making the cocnnection on a 
+mosquitto broker secured with a [LetsEncrypt](https://letsencrypt.org/) certificate.
+
+## Why?
+There seems to be a real lack of a sample for my specific scenario of connecting a xamarin.forms application to a mosquitto broker in a secure way.
+There are lot's of examples of unsecured mqtt apps. Many people are running mosquitto brokers unsecured facing the internet. 
+I've begun to take security in my applications seriously.
+
+I'm using this repository to learn how to secure my Xamarin.Forms applications with for example a Let's Encrypt cerfificate. In a **real world** way!
+
 
 ## Goal
 Goal of the project is to demonstrate how to secure a XamarinForms app with [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) to connect to a [Mosquitto broker](https://mosquitto.org/). 
@@ -41,8 +51,6 @@ In the screenshot you'll see the syntax for mosquitto_pub from the command line 
 See [Wiki/ScreenShots](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki/ScreenShots) for additional page images
 
 
-## Why?
-I'm using this repository to learn how to secure my Xamarin.Forms applications with for example a Let's Encrypt cerfificate. In a **real world** way!
 
 
 ## Resources

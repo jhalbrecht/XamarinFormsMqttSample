@@ -2,7 +2,8 @@
 
 ![](/images/SmallMoves.png)
 
-I got the self signed certificates to work on mosquitto sub/pub and a python example. .net you're next.
+I got the self signed certificates to work on mosquitto sub/pub and a python example. .net you're next.   
+Added 2 .py examples of pub / sub to mosquitto broker secured by letsencrypt certificate.
 
 ## Resources
 
