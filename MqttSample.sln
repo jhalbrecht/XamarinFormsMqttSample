@@ -16,6 +16,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqttSample.ConsoleApp", "MqttSample.Console\MqttSample.ConsoleApp.csproj", "{E59BA97F-D8D2-4153-BA26-0AD39634D190}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{B9208B37-77BF-43AF-8AC2-DBC381D61F41}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\PahoMqttLetsEncryptPublish.py = Samples\PahoMqttLetsEncryptPublish.py
+		Samples\PahoMqttLetsEncryptSubscribe.py = Samples\PahoMqttLetsEncryptSubscribe.py
+		Samples\PahoMqttSelfSigned.py = Samples\PahoMqttSelfSigned.py
+		Samples\ReadMe.md = Samples\ReadMe.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chkr1011MQTTnet.ConsoleApp", "Chkr1011MQTTnet.ConsoleApp\Chkr1011MQTTnet.ConsoleApp.csproj", "{76D8C378-85C2-4EA7-9BF3-8B7BA4B641F2}"
 EndProject

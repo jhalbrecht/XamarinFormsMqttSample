@@ -106,3 +106,5 @@ https://dotnetdevaddict.co.za/2015/07/31/self-signed-certificates-and-xamarin-an
 https://github.com/eclipse/paho.mqtt.m2mqtt/issues/67
 
 [How to create and import Self Signed Certificate to Android Device](https://aboutssl.org/how-to-create-and-import-self-signed-certificate-to-android-device/)
+
+https://hackernoon.com/the-most-promising-internet-of-things-trends-for-2018-10a852ccd189

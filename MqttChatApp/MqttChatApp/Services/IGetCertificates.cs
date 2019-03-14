@@ -9,5 +9,6 @@ namespace MqttChatApp.Services
     public interface IGetCertificates
     {
         void DebugWrite(string text);
+        void GetKey();
     }
 }

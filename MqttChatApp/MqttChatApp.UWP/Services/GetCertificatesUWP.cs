@@ -10,6 +10,11 @@ namespace MqttChatApp.UWP.Services
 {
     public class GetCertificatesUWP : IGetCertificates
     {
+        public void GetKey()
+        {
+            //throw new NotImplementedException();
+        }
+
         void IGetCertificates.DebugWrite(string text)
         {
             Debug.WriteLine($"\n\nGetCertificatesUWP says; {text}\n\n");

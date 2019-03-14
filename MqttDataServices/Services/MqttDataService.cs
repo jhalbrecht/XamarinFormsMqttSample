@@ -154,6 +154,27 @@ namespace MqttDataServices.Services
                     // LogX509ChainInformation(clientCert);
                     // DoX509ExtensionClass();
 
+
+
+                    /*
+                            /// <summary>
+                            /// Constructor
+                            /// </summary>
+                            /// <param name="brokerHostName">Broker Host Name or IP Address</param>
+                            /// <param name="brokerPort">Broker port</param>
+                            /// <param name="secure">Using secure connection</param>
+                            /// <param name="sslProtocol">SSL/TLS protocol version</param>
+                            /// <param name="userCertificateValidationCallback">A RemoteCertificateValidationCallback delegate responsible for validating the certificate supplied by the remote party</param>
+                            /// <param name="userCertificateSelectionCallback">A LocalCertificateSelectionCallback delegate responsible for selecting the certificate used for authentication</param>
+                            public MqttClient(string brokerHostName, int brokerPort, bool secure, MqttSslProtocols sslProtocol,
+                                RemoteCertificateValidationCallback userCertificateValidationCallback,
+                                LocalCertificateSelectionCallback userCertificateSelectionCallback)
+                                : this(
+                                    brokerHostName, brokerPort, secure, null, null, sslProtocol, userCertificateValidationCallback,
+                                    userCertificateSelectionCallback)
+                    */
+#if false
+                    // for self signed
                     _client = new MqttClient(
                         GetHostName(_xpdSetting.MqttBrokerAddress),
                         Int32.Parse(_xpdSetting.MqttBrokerTlsPort),
@@ -161,15 +182,24 @@ namespace MqttDataServices.Services
                         caCert,
                         clientCert,
                         MqttSslProtocols.TLSv1_2
-                        //MyRemoteCertificateValidationCallback
                         );
-
+#else
+                    // possibly for letsencrypt
+                    _client = new MqttClient(
+                        _xpdSetting.MqttBrokerAddress,
+                        Int32.Parse(_xpdSetting.MqttBrokerTlsPort),
+                        _xpdSetting.UseTls,
+                        null, null,
+                        MqttSslProtocols.TLSv1_2,
+                        MyRemoteCertificateValidationCallback,
+                        MyLocalCertificateSelectionCallback // https://docs.microsoft.com/en-us/dotnet/api/system.net.security.localcertificateselectioncallback?view=netframework-4.7.2
+                        );
+#endif
                 }
                 else
                 {
                     //_client = new MqttClient(_xpdSetting.MqttBrokerAddress);
                     _client = new MqttClient(_xpdSetting.MqttBrokerAddress);
-
                 }
 
                 // Android permissions?
@@ -187,6 +217,38 @@ namespace MqttDataServices.Services
             {
                 Debug.WriteLine(e);
             }
+        }
+
+        private static bool MyRemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            // this foreach was handy while learning and trying to get more detail on policy errors.
+
+            foreach (X509ChainStatus item in chain.ChainStatus)
+            {
+                Debug.WriteLine($"\nX509ChainStatus item: {item.StatusInformation}\n");
+            }
+
+            // return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
+
+            if (sslPolicyErrors == SslPolicyErrors.None)
+                return true;
+
+            // Do not allow this client to communicate with unauthenticated servers.
+            return false;
+        }
+        private void MyLocalCertificateSelectionCallback()
+        {
+            // https://stackoverflow.com/questions/7510979/why-remotecertificate-parameter-is-empty-in-localcertificateselectioncallback
+        }
+
+        private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        {
+            var message = System.Text.Encoding.Default.GetString(e.Message);
+            MqttMessageTransport mmt = new MqttMessageTransport();
+            mmt.Topic = e.Topic;
+            mmt.Message = message;
+            Debug.WriteLine($"Message received in MqttDataService _client_MqttMsgPublishReceived {message}");
+            _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);
         }
 
         private static void LogCertificatInformation(X509Certificate2 x509)
@@ -275,15 +337,6 @@ namespace MqttDataServices.Services
                 Console.WriteLine("Information could not be written out for this certificate.");
             }
         }
-        private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
-        {
-            var message = System.Text.Encoding.Default.GetString(e.Message);
-            MqttMessageTransport mmt = new MqttMessageTransport();
-            mmt.Topic = e.Topic;
-            mmt.Message = message;
-            Debug.WriteLine($"Message received in MqttDataService _client_MqttMsgPublishReceived {message}");
-            _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);
-        }
 
         /// <summary>
         /// based on
@@ -316,23 +369,7 @@ namespace MqttDataServices.Services
                 _xpdSetting.MqttBrokerTopic,
                 System.Text.Encoding.UTF8.GetBytes(publishmessage));
         }
-        private static bool MyRemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-        {
-            // this foreach was handy while learning and trying to get more detail on policy errors.
 
-            foreach (X509ChainStatus item in chain.ChainStatus)
-            {
-                Debug.WriteLine($"\nX509ChainStatus item: {item.StatusInformation}\n");
-            }
-
-            // return true;            // ToDo: ignore the error while testing. Do I need to install my root ca in the UWP app?
-
-            if (sslPolicyErrors == SslPolicyErrors.None)
-                return true;
-
-            // Do not allow this client to communicate with unauthenticated servers.
-            return false;
-        }
         //private void Thing()
         //{
         //    private Key generateAndStoreKey(String keyName, KEY_TYPE keyType, KeyPair keyPair) throws IOException {
