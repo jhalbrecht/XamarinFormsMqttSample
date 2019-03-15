@@ -168,7 +168,7 @@ namespace MqttDataServices.Services
                             /// <param name="userCertificateSelectionCallback">A LocalCertificateSelectionCallback delegate responsible for selecting the certificate used for authentication</param>
                             public MqttClient(string brokerHostName, int brokerPort, bool secure, MqttSslProtocols sslProtocol,
                                 RemoteCertificateValidationCallback userCertificateValidationCallback,
-                                LocalCertificateSelectionCallback userCertificateSelectionCallback)
+                                RemoteCertificateValidationCallback userCertificateSelectionCallback)
                                 : this(
                                     brokerHostName, brokerPort, secure, null, null, sslProtocol, userCertificateValidationCallback,
                                     userCertificateSelectionCallback)

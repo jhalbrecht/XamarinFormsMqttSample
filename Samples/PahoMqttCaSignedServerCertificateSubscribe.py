@@ -1,13 +1,13 @@
 ﻿# https://github.com/jhalbrecht/XamarinFormsMqttSample/tree/master/Samples 
 # Adapted from https://medium.com/@erinus/mosquitto-paho-mqtt-python-29cadb6f8f5c
-# This is setup for my mosquitto broker secured by my https letsencrypt certificate
+# This is setup for a mosquitto broker secured by CA Signed Server certificate. Perhaps letsencrypt 
 # Note; during testing I am not using usename and password credentials
 
 import ssl
 import sys
 
 import paho.mqtt.client
-host = 'redacted.org'
+host = 'iot.eclipse.org'
 topic = 'xamtest'
 
 def on_connect(client, userdata, flags, rc):
