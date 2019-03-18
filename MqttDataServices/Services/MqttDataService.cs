@@ -1,19 +1,16 @@
 //using M2Mqtt;
 //using M2Mqtt.Messages;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
-using Messaging.Models;
 using MqttChattApp.Utility.Services;
+using MqttDataServices.Models;
 using Prism.Events;
 using Prism.Services;
 using System;
 using System.Diagnostics;
-using System.Net;
 using System.Net.Security;
-using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 using Xamarin.Forms;
 
 // ToDo: Worth further investagation http://paulstovell.com/blog/x509certificate2

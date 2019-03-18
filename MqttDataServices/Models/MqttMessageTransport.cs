@@ -1,6 +1,6 @@
-﻿using Prism.Events;
+using Prism.Events;
 
-namespace Messaging.Models
+namespace MqttDataServices.Models
 {
     public class MqttMessageTransport : PubSubEvent<MqttMessageTransport>
     {

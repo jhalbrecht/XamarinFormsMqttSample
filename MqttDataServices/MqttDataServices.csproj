@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messaging\Messaging.csproj" />
     <ProjectReference Include="..\MqttChatApp.Utility\MqttChattApp.Utility.csproj" />
   </ItemGroup>
 

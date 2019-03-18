@@ -1,14 +1,11 @@
-﻿using Messaging.Models;
-using MqttChattApp.Utility.Services;
+﻿using MqttChattApp.Utility.Services;
+using MqttDataServices.Models;
 using MqttDataServices.Services;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 

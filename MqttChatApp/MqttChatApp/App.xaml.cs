@@ -38,9 +38,6 @@ namespace MqttChatApp
 
             containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
             containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService>();
-
-            //if (Device.RuntimePlatform == Device.UWP)
-            //    containerRegistry.RegisterSingleton<IGetCertificates, GetCertificatesUWP>();
         }
     }
 }
