@@ -1,4 +1,6 @@
 ﻿using Foundation;
+using MqttChatApp.iOS.services;
+using MqttChatApp.Services;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -33,6 +35,8 @@ namespace MqttChatApp.iOS
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+
+            containerRegistry.Register<IGetCertificates, GetCertificatesIos>();
         }
     }
 }
