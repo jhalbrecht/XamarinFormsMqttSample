@@ -3,7 +3,7 @@ using MqttDataServices.Models;
 using MqttDataServices.Services;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
+using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -11,13 +11,14 @@ using System.Windows.Input;
 
 namespace MqttChatApp.ViewModels
 {
-    public class ChatPageViewModel : BindableBase
+    public class ChatPageViewModel : ViewModelBase // BindableBase
     {
         private IXpdSettings _xpdsettings;
         private IEventAggregator _eventAggregator;
         private IMqttDataService _mqttDataService;
-        public ChatPageViewModel(IEventAggregator eventAggregator, IMqttDataService MqttDataService, IXpdSettings xpdSettings)
+        public ChatPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator, IMqttDataService MqttDataService, IXpdSettings xpdSettings) : base(navigationService)
         {
+            Title = "Mqtt Chat";
             _xpdsettings = xpdSettings;
             _eventAggregator = eventAggregator;
             _mqttDataService = MqttDataService;
@@ -31,6 +32,7 @@ namespace MqttChatApp.ViewModels
 
             MosquittoPubSub = $"mosquitto_pub -h {_xpdsettings.MqttBrokerAddress} -t {_xpdsettings.MqttBrokerTopic} -m 'Your message goes here.'";
         }
+        
         /// <summary>
         /// PublishMessageCommand
         /// </summary>

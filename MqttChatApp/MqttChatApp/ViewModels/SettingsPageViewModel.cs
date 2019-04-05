@@ -1,20 +1,16 @@
 ﻿using MqttChattApp.Utility.Services;
 using MqttDataServices.Services;
-// using MqttSample.Utility.Services;
 using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Prism.Navigation;
 using System.Windows.Input;
 
 namespace MqttChatApp.ViewModels
 {
-    public class SettingsPageViewModel : BindableBase
+    public class SettingsPageViewModel : ViewModelBase 
     {
         private IXpdSettings _xPdSetting;
         private IMqttDataService _mqttDataService;
-        public SettingsPageViewModel(IXpdSettings xpdSettings, IMqttDataService mqttDataService)
+        public SettingsPageViewModel(INavigationService navigationService, IXpdSettings xpdSettings, IMqttDataService mqttDataService) : base(navigationService)
         {
             Title = "new settings page";
             _xPdSetting = xpdSettings;
@@ -22,13 +18,11 @@ namespace MqttChatApp.ViewModels
 
             LoadCa = new DelegateCommand(() => _xPdSetting.LoadCa());
             LoadPfx = new DelegateCommand(() => _xPdSetting.LoadPfx());
-
         }
 
         public ICommand LoadCa { get; set; }
         public ICommand LoadPfx { get; set; }
 
-        public string Title { get; set; }
         /// <summary>
         /// Mqtt Brokder FQDN or ip address
         /// </summary>

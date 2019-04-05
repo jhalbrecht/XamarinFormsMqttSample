@@ -51,7 +51,7 @@ namespace MqttDataServices.Services
         public async Task Initialize()
         {
             Debug.WriteLine($"\n\n in MqttDataService Initialize() \n\n");
-            DisplayAlarm("Mqtt chat starting");
+            DisplayAlarm("Info", "Mqtt chat starting");
             try
             {
                 if (_xpdSetting.UseTls)
@@ -101,7 +101,7 @@ namespace MqttDataServices.Services
 
         private void _client_ConnectionClosed(object sender, EventArgs e)
         {
-            DisplayAlarm("_client_ConnectionClosed");
+            DisplayAlarm("Alarm", "_client_ConnectionClosed");
         }
         private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
@@ -122,15 +122,15 @@ namespace MqttDataServices.Services
             }
             else
             {
-                DisplayAlarm("PublishMqttMessage client is disconnected");
+                DisplayAlarm("Alarm", "PublishMqttMessage client is disconnected");
             }
         }
-        private void DisplayAlarm(string alarmMessage)
+        private void DisplayAlarm(string level, string alarmMessage)
         {
             Debug.WriteLine($"\n{alarmMessage}\n");
             MqttMessageTransport mmt = new MqttMessageTransport();
             string now = string.Format("{0:HH:mm:ss tt}", DateTime.Now);
-            mmt.Topic = "ALARM";
+            mmt.Topic = level;
             mmt.Message = $"{string.Format("{0:HH:mm:ss tt}", DateTime.Now)}; {alarmMessage}";
             _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);
         }
