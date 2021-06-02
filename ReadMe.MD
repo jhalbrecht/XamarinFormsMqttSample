@@ -1,6 +1,11 @@
 # Mqtt Sample for Xamarin.forms
 Built with [PrismLibrary/Prism](https://github.com/PrismLibrary/Prism)
 ## See the [wiki](https://github.com/jhalbrecht/XamarinFormsMqttSample/wiki) for documentation.
+
+* 6/2/2021 Converted from [M2MqttDotNetCore](https://github.com/mohaqeq/M2MqttDotnetCore) to [chkr1011/MQTTnet](https://github.com/chkr1011/MQTTnet) 
+Still using an older version of Xamarin forms. Once a new releas of  Uno / Xamarin / Avalonia / Maui releases, the dust settles and I understand a bit I'll update the ui :-)
+I've striped out many of the old projects as they disract from the intent of this repository MqttChatApp demonstrating mqtt connection including TLS.
+
 * 3/15/2019 Works on my machine! CA signed server certificate. Tested on iot.eclipse.org and my own letsncrypt secured mosquitto broker.
 
 * 3/14/2019 Although I've been initally going down a self signed client certificate path, I'm switching my efforts to making the cocnnection on a mosquitto broker secured with a [LetsEncrypt](https://letsencrypt.org/) certificate or other CA signed server certificate.

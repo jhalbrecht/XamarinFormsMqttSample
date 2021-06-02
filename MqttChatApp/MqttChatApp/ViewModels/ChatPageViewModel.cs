@@ -39,7 +39,7 @@ namespace MqttChatApp.ViewModels
         public ICommand PublishMessageCommand { get; set; }
         private void ExecutePublishMessageCommand()
         {
-            _mqttDataService.PublishMqttMessage(PublishMessage);
+            _mqttDataService.PublishMqttMessageAsync(PublishMessage);
             PublishMessage = string.Empty; // restore the Entry Placeholder
             RaisePropertyChanged("PublishMessage");
         }

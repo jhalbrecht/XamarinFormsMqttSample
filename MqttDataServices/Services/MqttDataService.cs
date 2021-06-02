@@ -1,7 +1,8 @@
-//using M2Mqtt;
-//using M2Mqtt.Messages;
 using MqttChattApp.Utility.Services;
 using MqttDataServices.Models;
+using MQTTnet.Client.Options;
+using MQTTnet;
+using MQTTnet.Client;
 using Prism.Events;
 using Prism.Services;
 using System;
@@ -9,33 +10,16 @@ using System.Diagnostics;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
 using Xamarin.Forms;
-
-// ToDo: Worth further investagation http://paulstovell.com/blog/x509certificate2
-// ToDo: interesting this is available. Further research.
-// https://docs.microsoft.com/en-us/dotnet/api/system.net.servicepointmanager?view=netframework-4.7.2
-// var a = System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-// ToDo: I want to check this out sometime....
-// https://github.com/chkr1011/MQTTnet
-
-// Create a new MQTT client.
-//var factory = new MqttFactory();
-//var mqttClient = factory.CreateMqttClient();
-//var mqttClient = new MqttFactory().CreateMqttClient();
-
-/*                          -->  My hero  <-- 
-*                          
-* https://stackoverflow.com/questions/42803493/unable-to-instantiate-x509certificate2-from-byte-array
-*/
+using System.Text;
+using System.Threading;
 
 namespace MqttDataServices.Services
 {
     public class MqttDataService : IMqttDataService
     {
-        private MqttClient _client;
+        private IMqttClient _client;
+        private static IMqttClientOptions _options;
         private IXpdSettings _xpdSetting;
         private IEventAggregator _eventAggregator;
         private IPageDialogService _pageDialogService;
@@ -52,84 +36,111 @@ namespace MqttDataServices.Services
         {
             Debug.WriteLine($"\n\n in MqttDataService Initialize() \n\n");
             DisplayAlarm("Info", "Mqtt chat starting");
+
+            string clientId = "";
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+                    clientId = "XamarinChatAppUWP";
+                    break;
+                case Device.Android:
+                    clientId = "XamarinChatAppAndroid";
+                    break;
+                default:
+                    clientId = "XamarinChatAppiOS";
+                    break;
+            }
+
             try
             {
+                var factory = new MqttFactory();
+                _client = factory.CreateMqttClient();
+
                 if (_xpdSetting.UseTls)
                 {
-                    _client = new MqttClient(
-                        _xpdSetting.MqttBrokerAddress,
-                        Int32.Parse(_xpdSetting.MqttBrokerTlsPort),
-                        _xpdSetting.UseTls,
-                        MqttSslProtocols.TLSv1_2,
-                        new RemoteCertificateValidationCallback(MyRemoteCertificateValidationCallback),
-                        new LocalCertificateSelectionCallback(MyLocalCertificateSelectionCallback)
-                        );
+                    _options = new MqttClientOptionsBuilder()
+                        .WithClientId(clientId)
+                        .WithTcpServer(_xpdSetting.MqttBrokerAddress, Int16.Parse(_xpdSetting.MqttBrokerTlsPort)) // old M2MqttDotNet used string port. 
+                        .WithCredentials(_xpdSetting.MqttBrokerUserName, _xpdSetting.MqttBrokerUserPassword)
+                        .WithCleanSession()
+                        .WithTls()
+                        .Build();
                 }
                 else
                 {
-                    _client = new MqttClient(_xpdSetting.MqttBrokerAddress);
+                    _options = new MqttClientOptionsBuilder()
+                        .WithClientId(clientId)
+                        .WithTcpServer(_xpdSetting.MqttBrokerAddress, Int16.Parse(_xpdSetting.MqttBrokerPort))
+                        .WithCredentials(_xpdSetting.MqttBrokerUserName, _xpdSetting.MqttBrokerUserPassword)
+                        .WithCleanSession()
+                        .Build();
                 }
 
-                _client.MqttMsgPublishReceived += _client_MqttMsgPublishReceived; // TODO I don't think I like this naming _client_MqttMsgPublishReceived
-                _client.ConnectionClosed += _client_ConnectionClosed;
-
-                string clientId = "";
-                if (Device.RuntimePlatform == Device.UWP)
-                {
-                    clientId = "XamarinUWP";
-                }
-                else if (Device.RuntimePlatform == Device.Android)
-                {
-                    clientId = "XamarinAndroid";
-                }
-                else
-                {
-                    clientId = "XamariniOS";
-                }
-
-                //string clientId = Guid.NewGuid().ToString();
-
-                //_client.Connect(clientId);
-                _client.Connect(clientId, null, null, false, 60);
-                _client.Subscribe(new String[] { _xpdSetting.MqttBrokerTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                _client.ConnectAsync(_options).Wait();
+                _client.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(_xpdSetting.MqttBrokerTopic).Build()).Wait();
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
             }
+
+            _client.UseConnectedHandler(e =>
+            {
+                Debug.WriteLine("Connected successfully with MQTT Brokers.");
+                _client.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(_xpdSetting.MqttBrokerTopic).Build()).Wait();
+            });
+
+            _client.UseDisconnectedHandler(async e =>
+            {
+                Debug.WriteLine("\nDisconnect\n");
+                await Task.Delay(TimeSpan.FromSeconds(5));
+
+                try
+                {
+                    await _client.ConnectAsync(_options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                    Debug.WriteLine("### Reconnection Success! ###");
+                    _client.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(_xpdSetting.MqttBrokerTopic).Build()).Wait();
+                }
+                catch
+                {
+                    Debug.WriteLine("### RECONNECTING FAILED ###");
+                }
+            });
+
+            _client.UseApplicationMessageReceivedHandler(e =>
+                {
+                    MqttMessageTransport mmt = new MqttMessageTransport
+                    {
+                        Topic = e.ApplicationMessage.Topic,
+                        Message = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
+                    };
+                    Debug.WriteLine($"Message received in MqttDataService _client_MqttMsgPublishReceived {mmt.Message}");
+                    _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);
+                });
         }
 
         private void _client_ConnectionClosed(object sender, EventArgs e)
         {
             DisplayAlarm("Alarm", "_client_ConnectionClosed");
+            Debug.WriteLine("connection closed\n");
         }
-        private void _client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+
+        public async Task PublishMqttMessageAsync(string publishmessage)
         {
-            var message = System.Text.Encoding.Default.GetString(e.Message);
-            MqttMessageTransport mmt = new MqttMessageTransport();
-            mmt.Topic = e.Topic;
-            mmt.Message = message;
-            Debug.WriteLine($"Message received in MqttDataService _client_MqttMsgPublishReceived {message}");
-            _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);
-        }
-        public void PublishMqttMessage(string publishmessage)
-        {
-            if (_client.IsConnected)
-            {
-                _client.Publish(
-                    _xpdSetting.MqttBrokerTopic,
-                    System.Text.Encoding.UTF8.GetBytes(publishmessage));
-            }
-            else
-            {
-                DisplayAlarm("Alarm", "PublishMqttMessage client is disconnected");
-            }
+            var message = new MqttApplicationMessageBuilder()
+                .WithTopic(_xpdSetting.MqttBrokerTopic)
+                .WithPayload(publishmessage)
+                .WithExactlyOnceQoS()
+                .WithRetainFlag()
+                .Build();
+
+            await _client.PublishAsync(message, CancellationToken.None); // Since 3.0.5 with CancellationToken
         }
         private void DisplayAlarm(string level, string alarmMessage)
         {
             Debug.WriteLine($"\n{alarmMessage}\n");
             MqttMessageTransport mmt = new MqttMessageTransport();
-            string now = string.Format("{0:HH:mm:ss tt}", DateTime.Now);
+            // string now = string.Format("{0:HH:mm:ss tt}", DateTime.Now);
             mmt.Topic = level;
             mmt.Message = $"{string.Format("{0:HH:mm:ss tt}", DateTime.Now)}; {alarmMessage}";
             _eventAggregator.GetEvent<MqttMessageTransport>().Publish(mmt);

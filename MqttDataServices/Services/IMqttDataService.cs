@@ -4,7 +4,7 @@ namespace MqttDataServices.Services
     public interface IMqttDataService
     {
         Task Initialize();
-        void PublishMqttMessage(string publishmessage);
+        Task PublishMqttMessageAsync(string publishmessage);
         //Task FilePicker();
         //Task DoLoadCa();
     }

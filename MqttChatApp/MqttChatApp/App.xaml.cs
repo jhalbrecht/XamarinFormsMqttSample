@@ -38,6 +38,8 @@ namespace MqttChatApp
 
             containerRegistry.RegisterSingleton<IXpdSettings, XpdSettings>();
             containerRegistry.RegisterSingleton<IMqttDataService, MqttDataService>();
+            // containerRegistry.RegisterSingleton<MqttDataService, MqttDataService>();
+
         }
     }
 }
